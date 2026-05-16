@@ -165,7 +165,7 @@ h3 {
 .check-prjs {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     width: 100%;
     max-width: 400px;
     /* Prevents buttons from spanning full screen width awkwardly */
@@ -181,6 +181,7 @@ h3 {
     display: flex;
     justify-content: center;
     transition: all 0.3s ease;
+    margin:0;
 }
 
 .check-prj-text-icon {
