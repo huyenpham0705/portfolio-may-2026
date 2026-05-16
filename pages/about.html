@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./src/css/reset.css"> -->
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>Huyen Pham</title>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a class="unactive" href="../../index.html">Home</a></li>
+            <li><a class="active" href="../../pages/about.html">About me</a></li>
+            <li><a class="unactive" href="./pages/journey.html">Designer Journey</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="about-grid">
+            <!-- Left: Image & Skills -->
+            <div class="about-sidebar reveal">
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/600x750" alt="Huyen Pham">
+                </div>
+
+                <div class="story-section">
+                    <h3>Tools & Specialties</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <h5>Design</h5>
+                            <p>Figma, Adobe XD, Photoshop, Illustrator</p>
+                        </div>
+                        <div class="skill-item">
+                            <h5>Motion</h5>
+                            <p>After Effects, Premiere Pro</p>
+                        </div>
+                        <div class="skill-item">
+                            <h5>Methods</h5>
+                            <p>User Research, Wireframing, Rapid Prototyping</p>
+                        </div>
+                        <div class="skill-item">
+                            <h5>Languages</h5>
+                            <p>HTML/CSS, English, Vietnamese</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: The Narrative -->
+            <div class="about-text">
+                <h1 class="reveal">Huyen <br>Pham</h1>
+                <p class="reveal" style="font-size: 1.4rem; font-weight: 400;">Visual & UX/UI Designer crafting
+                    meaningful digital experiences through purposeful storytelling.</p>
+
+                <div class="philosophy-tag reveal">
+                    "I believe design isn't just how it looks, but how it builds empathy between a product and its
+                    user."
+                </div>
+
+                <div class="story-section reveal">
+                    <h3>My Story</h3>
+                    <p>My journey into design started with a fascination for how colors and shapes could influence human
+                        emotion. What began as a hobby in graphic design evolved into a deep-rooted passion for
+                        UX/UI—solving complex problems by putting the human experience at the center of every pixel.</p>
+                </div>
+
+                <div class="story-section reveal">
+                    <h3>My Process</h3>
+                    <p>I don't start with a canvas; I start with a question. Whether I'm building a brand identity or a
+                        mobile app, my process involves deep research, messy sketching, and rigorous testing. I thrive
+                        in collaborative environments where feedback is honest and the goal is always the best possible
+                        user outcome.</p>
+                </div>
+
+                <div class="story-section reveal">
+                    <h3>Beyond the Screen</h3>
+                    <p>When I'm not pushing pixels, you'll likely find me capturing urban landscapes through a 35mm
+                        lens, exploring local coffee shops, or traveling to find new cultural inspirations. I believe a
+                        well-traveled mind is a designer’s best asset.</p>
+                </div>
+
+                <div class="story-section reveal">
+                    <h3>What's Next</h3>
+                    <p>I am currently looking for opportunities to join a creative team where I can contribute to
+                        high-impact digital products and continue growing in the fields of Motion Design and UX
+                        Strategy.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <h2>Let’s Bring Your Ideas to Life</h2>
+            <div class="footer-links">
+                <a href="mailto:pthphamthanhhuyen@gmail.com">
+                    <div class="contact-icon-text">
+                        <img class="contact-icon" src="../assets/logos/email.svg">
+                        <p class="contact-text">pthphamthanhhuyen@gmail.com</p>
+                    </div>
+                </a>
+                <a href="https://www.behance.net/thanhhuyenpham2">
+                    <div class="contact-icon-text">
+                        <img class="contact-icon" src="../assets/logos/behance.svg">
+                        <p class="contact-text">Behance page for Visual Design</p>
+                    </div>
+                </a>
+                <a href="https://www.behance.net/huyenpham45">
+                    <div class="contact-icon-text">
+                        <img class="contact-icon" src="../assets/logos/behance.svg">
+                        <p class="contact-text">Behance page for UX Design</p>
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/bongngoive/">
+                    <div class="contact-icon-text">
+                        <img class="contact-icon" src="../assets/logos/instagram.svg">
+                        <p class="contact-text">Instagram</p>
+                    </div>
+                </a>
+            </div>
+            <p class="footer-copy">&copy; 2026 Huyen Pham. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
