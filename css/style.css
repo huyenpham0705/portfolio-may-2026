@@ -298,7 +298,7 @@ h3 {
     width: 100%;
     height: auto;
     object-fit: cover;
-    border-radius: 100px;
+    border-radius: 300px;
     /* Balanced pill shape on mobile */
 }
 
@@ -342,59 +342,13 @@ h3 {
     .nav-toggle {
         display: none;
     }
-}
 
-/* .hero-section {
-    height: 100vh;
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    padding: 0 10%;
-}
-
-.hero-image {
-    display: none;
-}
-
-@media (min-width: 768px) {
-    .hero-section {
-        height: 90vh;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 0 10%;
-    }
-
-    .hero-image img {
-        width: 80%;
+    .about-me-img {
+        width: 30%;
         height: auto;
-        border-radius: 175px;
-        align-self: center;
+        border-radius: 30px;
     }
 }
-
-.hero-content h1 {
-    font-size: clamp(3rem, 8vw, 6rem);
-    flex: 1;
-    line-height: 1;
-}
-
-
-
-
-
-.check-prjs {
-    display: flex;
-    flex-flow: row;
-    gap: 20px;
-}
-
-.check-prj-text-icon {
-    display: flex;
-    flex-flow: row;
-    gap: 10px;
-    align-items: center;
-} */
 
 /* About teaser: section is the flex container */
 .about-teaser.reveal {
@@ -422,9 +376,7 @@ h3 {
 }
 
 .about-me-img {
-    width: 30%;
-    height: auto;
-    border-radius: 30px;
+    display: none;
 }
 
 .field-cards {
@@ -437,11 +389,25 @@ h3 {
 
 .field-card {
     display: inline-block;
-    padding: 8px 30px;
+    padding: 4px 10px;
     border: 1px solid var(--text);
     text-decoration: none;
     color: var(--text);
     border-radius: 30px;
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    
+    .field-card {
+        display: inline-block;
+        padding: 8px 30px;
+        border: 1px solid var(--text);
+        text-decoration: none;
+        color: var(--text);
+        border-radius: 30px;
+        font-size: 16px;
+    }
 }
 
 .software-stack {
