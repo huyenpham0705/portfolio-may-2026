@@ -802,25 +802,29 @@ h4 {
     background: #f2f2f2;
     padding: 0;
     z-index: 0;
-    height: 100vh;
+    height: 90vh;
 }
 
 .hero-mockup {
     grid-row: 1/2;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 }
 
 .hero-mockup img {
-    width: auto;
-    max-width: 100%;
+    width: 100%;
+    height: auto;
     display: block;
 }
 
 .hero-meta {
     grid-row: 2/3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 .hero-meta h1 {
@@ -840,7 +844,8 @@ h4 {
 .hero-meta-detail {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    gap: 15px;
 }
 
 .hero-meta-cateprj {
@@ -858,9 +863,9 @@ h4 {
 .project-overview {
     display: flex;
     flex-flow: column;
-    gap: 60px;
-    padding-left: 10%;
-    padding-right: 10%;
+    gap: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
     padding-top: 5%;
 }
 
@@ -875,7 +880,7 @@ h4 {
 }
 
 .role-box {
-    width: 40%;
+    width: 100%;
 }
 
 .purpose-box {
@@ -944,11 +949,21 @@ h4 {
         display: block;
     }
 
+    .hero-meta {
+        grid-row: 2/3;
+    }
+
     .hero-meta h1 {
         font-size: 100px;
         grid-column: 2/3;
         font-family: 'Instrument Serif', serif;
         margin: -10px 0;
+    }
+
+    .hero-meta-detail {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
 
     .project-overview {
@@ -968,6 +983,10 @@ h4 {
 
     .process-text {
         width: 65vw;
+    }
+
+    .role-box {
+        width: 40%;
     }
 
 }
