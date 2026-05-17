@@ -87,6 +87,87 @@ h3 {
     display: flex;
     list-style: none;
     gap: 50px;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(250, 250, 250, 0.98);
+    backdrop-filter: blur(12px);
+}
+
+.nav-links.is-open {
+    /* 3. Pull the menu flawlessly back to its original resting frame */
+    transform: translateX(0);
+}
+
+/* 1. Toggle Button Container Setup */
+.nav-toggle {
+    display: inline-flex;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    /* Changed to a perfect square for centered geometry */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1202;
+}
+
+/* 2. Centered Layout Setup for the 3 Lines */
+.nav-toggle span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    /* Thickness of each bar */
+    background-color: #1a1a1a;
+    border-radius: 2px;
+    /* Sets the rotation point dead-center of each line */
+    transform-origin: center center;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 3. Even Distribution for Hamburger State (Using translate Y) */
+.nav-toggle span:nth-child(1) {
+    top: 4px;
+    /* Positioned near top edge */
+}
+
+.nav-toggle span:nth-child(2) {
+    top: 11px;
+    /* Positioned dead center */
+}
+
+.nav-toggle span:nth-child(3) {
+    top: 18px;
+    /* Positioned near bottom edge */
+}
+
+/* 4. The Symmetrical "X" Transformation States */
+
+/* Top Line: Drops to the center and rotates 45 deg */
+.nav-toggle.is-open span:nth-child(1) {
+    top: 11px;
+    transform: rotate(45deg);
+}
+
+/* Middle Line: Shrinks away smoothly in place */
+.nav-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+/* Bottom Line: Rises to the center and rotates -45 deg */
+.nav-toggle.is-open span:nth-child(3) {
+    top: 11px;
+    transform: rotate(-45deg);
+}
+
+/* Accessibility Focus Ring */
+.nav-toggle:focus-visible {
+    outline: 2px dashed #1a1a1a;
+    outline-offset: 4px;
 }
 
 
@@ -181,7 +262,7 @@ h3 {
     display: flex;
     justify-content: center;
     transition: all 0.3s ease;
-    margin:0;
+    margin: 0;
 }
 
 .check-prj-text-icon {
@@ -261,6 +342,10 @@ h3 {
         flex-direction: row;
         /* Returns side-by-side array orientation */
         max-width: none;
+    }
+
+    .nav-toggle {
+        display: none;
     }
 }
 
@@ -914,6 +999,58 @@ h4 {
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        justify-content: flex-end;
+        align-items: center;
+        padding: 14px 5%;
+    }
+
+    .nav-toggle {
+        display: inline-flex;
+        z-index: 1202;
+    }
+
+    .nav-links {
+        display: none;
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        min-height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+        padding: 96px 24px 32px;
+        background: rgba(250, 250, 250, 0.98);
+        backdrop-filter: blur(12px);
+        z-index: 1201;
+    }
+
+    .nav-links.is-open {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: auto;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 12px 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links .active,
+    .nav-links .unactive {
+        font-size: 1.2rem;
+    }
+
+    body.nav-open {
+        overflow: hidden;
+    }
+
     .about-grid {
         grid-template-columns: 1fr;
         gap: 40px;
