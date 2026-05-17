@@ -797,7 +797,7 @@ h4 {
 
 .project-hero {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 50vh 40vh;
     align-items: center;
     background: #f2f2f2;
     padding: 0;
@@ -805,11 +805,25 @@ h4 {
     height: 90vh;
 }
 
+@media (min-width: 375px) {
+    .project-hero {
+        display: grid;
+        grid-template-rows: 50vh 40vh;
+        align-items: center;
+        background: #f2f2f2;
+        padding: 0;
+        z-index: 0;
+        height: 90vh;
+    }
+}
+
+
+
 .hero-mockup {
     grid-row: 1/2;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
 }
 
@@ -817,6 +831,24 @@ h4 {
     width: 100%;
     height: auto;
     display: block;
+}
+
+@media (min-width: 425px) {
+    .project-hero {
+        display: grid;
+        grid-template-rows: 50vh 40vh;
+        align-items: center;
+        background: #f2f2f2;
+        padding: 0;
+        z-index: 0;
+        height: 90vh;
+    }
+
+    .hero-mockup img {
+        width: 70%;
+        height: auto;
+        display: block;
+    }
 }
 
 .hero-meta {
@@ -864,9 +896,7 @@ h4 {
     display: flex;
     flex-flow: column;
     gap: 20px;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 5%;
+    padding: 5%;
 }
 
 .process-text {
@@ -875,8 +905,13 @@ h4 {
 
 .briefing,
 .final-results {
-    padding-top: 5%;
+    padding-top: 7%;
     padding-bottom: 0;
+}
+
+.briefing h2,
+.final-results h2 {
+    padding-bottom: 5%;
 }
 
 .role-box {
@@ -911,6 +946,12 @@ h4 {
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+}
+
+.final-result-button {
+    width: fit-content;
+    margin-top: 0;
 }
 
 h4 {
@@ -951,10 +992,13 @@ h4 {
 
     .hero-meta {
         grid-row: 2/3;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .hero-meta h1 {
-        font-size: 100px;
+        font-size: 80px;
         grid-column: 2/3;
         font-family: 'Instrument Serif', serif;
         margin: -10px 0;
@@ -970,9 +1014,7 @@ h4 {
         display: flex;
         flex-flow: row;
         gap: 60px;
-        padding-left: 10%;
-        padding-right: 10%;
-        padding-top: 5%;
+        padding: 5%;
     }
 
     .final-results-buttons {
@@ -989,6 +1031,22 @@ h4 {
         width: 40%;
     }
 
+    .briefing,
+    .final-results {
+        padding-top: 5%;
+        padding-bottom: 0;
+    }
+
+
+}
+
+@media (min-width: 1024px) {
+    .project-overview {
+        display: flex;
+        flex-flow: row;
+        gap: 60px;
+        padding: 5% 10% 0;
+    }
 }
 
 /* Published list links (open image) */
