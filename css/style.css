@@ -49,6 +49,9 @@ body {
         font-size: 250px;
     }
 } */
+h1 {
+    line-height: 1.1;
+}
 
 h2,
 h3 {
@@ -57,11 +60,34 @@ h3 {
 }
 
 h2 {
-    font-size: 70px;
+    font-size: 50px;
+    line-height: 1.1;
 }
 
 h3 {
-    font-size: 35px;
+    font-size: 25px;
+    line-height: 1.1;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+
+@media (min-width: 768px) {
+    h2 {
+        font-size: 70px;
+        line-height: 1.1;
+    }
+
+    h3 {
+        font-size: 35px;
+        line-height: 1.1;
+    }
+
+    h4 {
+        font-size: 25px;
+    }
 }
 
 .container {
@@ -203,7 +229,7 @@ h3 {
     justify-content: center;
     align-items: center;
     gap: 40px;
-    padding: 5% 5% 60px 5%;
+    padding: 5% 5% 5% 5%;
     /* Generous top padding prevents sticky navbar overlap */
     text-align: center;
 }
@@ -302,6 +328,9 @@ h3 {
     /* Balanced pill shape on mobile */
 }
 
+.about-me-img {
+    display: none;
+}
 
 /* --- Desktop Refinements (>= 768px) --- */
 @media (min-width: 768px) {
@@ -344,6 +373,7 @@ h3 {
     }
 
     .about-me-img {
+        display: block;
         width: 30%;
         height: auto;
         border-radius: 30px;
@@ -375,10 +405,6 @@ h3 {
     }
 }
 
-.about-me-img {
-    display: none;
-}
-
 .field-cards {
     display: flex;
     flex-wrap: wrap;
@@ -398,7 +424,7 @@ h3 {
 }
 
 @media (min-width: 768px) {
-    
+
     .field-card {
         display: inline-block;
         padding: 8px 30px;
@@ -565,12 +591,11 @@ h3 {
 }
 
 .published-item a {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    display: flex;
+    flex-direction: column;
     padding: 30px 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    align-items: center;
     transition: background-color 0.3s ease, padding-left 0.3s ease;
 }
 
@@ -589,9 +614,27 @@ h3 {
 }
 
 .project-year {
-    font-size: 0.9rem;
-    text-align: right;
-    color: #888;
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .published-item a {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        padding: 30px 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        align-items: center;
+        transition: background-color 0.3s ease, padding-left 0.3s ease;
+    }
+
+    .project-year {
+        display: inline;
+        font-size: 0.9rem;
+        text-align: right;
+        color: #888;
+    }
+
 }
 
 /* Hover effect on row text layout */
@@ -842,9 +885,9 @@ h3 {
 .role-box h4,
 .purpose-box h4 {
     text-transform: uppercase;
-    font-size: 0.8rem;
     letter-spacing: 1px;
     color: #888;
+    line-height: 1.1;
 }
 
 .gallery-section {
@@ -865,7 +908,6 @@ h3 {
 }
 
 h4 {
-    font-size: 25px;
     font-weight: 500;
 }
 
