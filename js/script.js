@@ -209,3 +209,83 @@ if (preview && previewImg) {
         });
     });
 }
+
+// --- HERO IMAGE 3D MULTI-AXIS SHEEN TRACKER ---
+const heroImgContainer = document.querySelector('.hero-image-interactive');
+
+if (heroImgContainer) {
+    heroImgContainer.addEventListener('mousemove', (e) => {
+        // Skip processing heavy structural math operations on mobile viewports
+        if (window.innerWidth <= 768) return;
+
+        const rect = heroImgContainer.getBoundingClientRect();
+
+        // Step 1: Calculate vector distances relative to container viewport bounds
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        // Step 2: Convert coordinate planes into degree metrics (-10deg to 10deg bounds)
+        const rotateX = ((centerY - y) / centerY) * 10;
+        const rotateY = ((x - centerX) / centerX) * -10; // Reversed vector to natural tilt path
+
+        // Step 3: Map precise percentage positioning metrics for lighting radial engine
+        const sheenX = (x / rect.width) * 100;
+        const sheenY = (y / rect.height) * 100;
+
+        // Step 4: Inject mutations straight into elements
+        heroImgContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        heroImgContainer.style.setProperty('--sheen-x', `${sheenX}%`);
+        heroImgContainer.style.setProperty('--sheen-y', `${sheenY}%`);
+    });
+
+    // Reset components seamlessly to neutral baseline positions on boundary exit
+    heroImgContainer.addEventListener('mouseleave', () => {
+        heroImgContainer.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        heroImgContainer.style.setProperty('--sheen-x', '50%');
+        heroImgContainer.style.setProperty('--sheen-y', '50%');
+    });
+}
+
+// --- SMOOTH LERP CUSTOM CURSOR ENGINE ---
+const customCursor = document.querySelector('.custom-cursor');
+
+if (customCursor && window.innerWidth > 768) {
+    let mouseX = 0, mouseY = 0; // Absolute hardware mouse coordinates
+    let currentX = 0, currentY = 0; // Animated circle positions lagging behind
+
+    // Track mouse movement instantly
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // Continuously calculate the inertial step vector 
+    // Inside your animateCursor() function in script.js:
+    function animateCursor() {
+        // Changing 0.15 to 0.2 makes the circle follow the visible cursor slightly closer
+        currentX += (mouseX - currentX) * 0.2;
+        currentY += (mouseY - currentY) * 0.2;
+
+        customCursor.style.left = `${currentX}px`;
+        customCursor.style.top = `${currentY}px`;
+
+        requestAnimationFrame(animateCursor);
+    }
+    // Start loop
+    requestAnimationFrame(animateCursor);
+
+    // Add interactive expansion triggers over clickables
+    const interactiveElements = document.querySelectorAll('a, button, .project-card, .published-item');
+
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            customCursor.classList.add('hovered');
+        });
+        el.addEventListener('mouseleave', () => {
+            customCursor.classList.remove('hovered');
+        });
+    });
+}

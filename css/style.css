@@ -85,6 +85,58 @@ h4 {
     padding: 5% 0;
 }
 
+/* --- INERTIAL MOUSE AURA --- */
+/* --- INERTIAL MOUSE AURA (WITH NATIVE CURSOR VISIBLE) --- */
+@media (min-width: 768px) {
+    /* REMOVED: cursor: none !important; -> Native cursor is now visible! */
+
+    .custom-cursor {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 18px;
+        height: 18px;
+        border: 1.5px solid #9b88dc;
+        background-color: #9b88dc;
+        box-shadow: 0 0 8px rgba(242, 242, 242, 0.3);
+        /* Matches your dark text accent color */
+        border-radius: 50%;
+        pointer-events: none;
+        /* Crucial so it doesn't block clicks/hovers underneath */
+        z-index: 99999;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+            height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+            background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+            border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: left, top;
+    }
+
+    /* Elegant expansion state when hovering over links, buttons, or project items */
+    .custom-cursor.hovered {
+        width: 35px;
+        height: 35px;
+        background-color: #9b88dc;
+        /* Soft accent-tinted fill (purple) */
+        border-color: #9b88dc;
+        /* Subtle glow to give the cursor a colored presence */
+    }
+}
+
+@media (max-width: 767px) {
+    .custom-cursor {
+        display: none !important;
+    }
+}
+
+/* Ensure it stays hidden on mobile screens where mouse tracking doesn't exist */
+@media (max-width: 767px) {
+    .custom-cursor {
+        display: none !important;
+    }
+}
+
 /* --- STICKY NAVBAR & PROGRESS TRACKER --- */
 .navbar {
     position: sticky;
@@ -104,8 +156,8 @@ h4 {
     top: 0;
     left: 0;
     width: var(--scroll-width, 0%);
-    height: 3px;
-    background: var(--text);
+    height: 5px;
+    background: #432c8f;
     transition: width 0.1s ease-out;
     z-index: 1001;
 }
@@ -201,6 +253,8 @@ h4 {
 }
 
 /* --- HERO SECTION --- */
+
+
 .hero-section {
     min-height: 100vh;
     display: flex;
@@ -234,7 +288,7 @@ h4 {
 .title2 {
     font-family: 'Instrument Serif', serif;
     font-weight: 600;
-    font-size: clamp(5rem, 15vw, 12.5rem);
+    font-size: clamp(5rem, 15vw, 15rem);
     display: block;
 }
 
@@ -285,17 +339,63 @@ h4 {
     transform: translateY(3px);
 }
 
+/* --- INTERACTIVE HERO IMAGE FX --- */
 .hero-image {
-    display: block;
-    width: 100%;
-    max-width: 320px;
+    perspective: 1000px;
+    /* Gives the container 3D structural depth */
 }
 
-.hero-image img {
+.hero-image-interactive {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out;
+    will-change: transform;
+    cursor: pointer;
+}
+
+/* Ensure the sheen element doesn't bleed past the circular profile curve */
+.hero-image-interactive img {
     width: 100%;
     height: auto;
     object-fit: cover;
-    border-radius: 300px;
+    border-radius: 500px;
+    /* Matches your mobile boundary shape */
+    display: block;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Create the glossy highlight sheen layer */
+.hero-image-interactive::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    /* Dynamically inherits the image's rounded border radius */
+    background: radial-gradient(circle 120px at var(--sheen-x, 50%) var(--sheen-y, 50%), rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    /* Allows cursor to pass through cleanly to track positions */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Lift shadows up on hover */
+.hero-image-interactive:hover img {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.hero-image-interactive:hover::after {
+    opacity: 1;
+}
+
+@media (min-width: 768px) {
+    .hero-image-interactive img {
+        border-radius: 500px;
+        /* Matches your desktop boundary curves perfectly */
+    }
 }
 
 .about-me-img {
@@ -319,14 +419,14 @@ h4 {
 
     .hero-image {
         flex: 0.8;
-        max-width: 450px;
+        max-width: 500px;
         display: flex;
         justify-content: center;
     }
 
     .hero-image img {
-        width: 100%;
-        border-radius: 175px;
+        width: 90%;
+        border-radius: 500px;
     }
 
     .check-prjs {
