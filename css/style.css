@@ -38,17 +38,6 @@ body {
     font-size: 200px;
 }
 
-/* @media (min-width: 768px) {
-    .title1 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 60px;
-    }
-    .title2 {
-        font-family: 'Instrument Serif', serif;
-        font-weight: 600;
-        font-size: 250px;
-    }
-} */
 h1 {
     line-height: 1.1;
 }
@@ -73,7 +62,6 @@ h4 {
     font-size: 18px;
 }
 
-
 @media (min-width: 768px) {
     h2 {
         font-size: 70px;
@@ -97,7 +85,7 @@ h4 {
     padding: 5% 0;
 }
 
-/* Sticky Nav */
+/* --- STICKY NAVBAR & PROGRESS TRACKER --- */
 .navbar {
     position: sticky;
     top: 0;
@@ -109,6 +97,19 @@ h4 {
     z-index: 1000;
 }
 
+/* Scroll progress loader container */
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--scroll-width, 0%);
+    height: 3px;
+    background: var(--text);
+    transition: width 0.1s ease-out;
+    z-index: 1001;
+}
+
 .nav-links {
     display: flex;
     list-style: none;
@@ -116,17 +117,14 @@ h4 {
 }
 
 .nav-links.is-open {
-    /* 3. Pull the menu flawlessly back to its original resting frame */
     transform: translateX(0);
 }
 
-/* 1. Toggle Button Container Setup */
 .nav-toggle {
     display: none;
     position: relative;
     width: 24px;
     height: 24px;
-    /* Changed to a perfect square for centered geometry */
     background: transparent;
     border: none;
     cursor: pointer;
@@ -134,63 +132,49 @@ h4 {
     z-index: 1202;
 }
 
-/* 2. Centered Layout Setup for the 3 Lines */
 .nav-toggle span {
     position: absolute;
     left: 0;
     width: 100%;
     height: 2px;
-    /* Thickness of each bar */
     background-color: #1a1a1a;
     border-radius: 2px;
-    /* Sets the rotation point dead-center of each line */
     transform-origin: center center;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
         opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 3. Even Distribution for Hamburger State (Using translate Y) */
 .nav-toggle span:nth-child(1) {
     top: 4px;
-    /* Positioned near top edge */
 }
 
 .nav-toggle span:nth-child(2) {
     top: 11px;
-    /* Positioned dead center */
 }
 
 .nav-toggle span:nth-child(3) {
     top: 18px;
-    /* Positioned near bottom edge */
 }
 
-/* 4. The Symmetrical "X" Transformation States */
-
-/* Top Line: Drops to the center and rotates 45 deg */
 .nav-toggle.is-open span:nth-child(1) {
     top: 11px;
     transform: rotate(45deg);
 }
 
-/* Middle Line: Shrinks away smoothly in place */
 .nav-toggle.is-open span:nth-child(2) {
     opacity: 0;
     transform: scaleX(0);
 }
 
-/* Bottom Line: Rises to the center and rotates -45 deg */
 .nav-toggle.is-open span:nth-child(3) {
     top: 11px;
     transform: rotate(-45deg);
 }
 
-/* Accessibility Focus Ring */
 .nav-toggle:focus-visible {
     outline: 2px dashed #1a1a1a;
     outline-offset: 4px;
 }
-
 
 .nav-links .active {
     text-decoration: underline;
@@ -216,21 +200,15 @@ h4 {
     opacity: 0.5;
 }
 
-
-/* Hero -------------------------------------------------- */
-
-/* --- Base Styles / Mobile First (< 768px) --- */
-
+/* --- HERO SECTION --- */
 .hero-section {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    /* Changed from column-reverse so text is readable first, or image flows naturally */
     justify-content: center;
     align-items: center;
     gap: 40px;
-    padding: 5% 5% 5% 5%;
-    /* Generous top padding prevents sticky navbar overlap */
+    padding: 5%;
     text-align: center;
 }
 
@@ -247,11 +225,9 @@ h4 {
     width: 100%;
 }
 
-/* Fluid Typography using clamp() ensures text scales flawlessly without breaking layouts */
 .title1 {
     font-family: 'Montserrat', sans-serif;
     font-size: clamp(2rem, 5vw, 3.75rem);
-    /* Scales between 32px and 60px */
     display: block;
 }
 
@@ -259,18 +235,15 @@ h4 {
     font-family: 'Instrument Serif', serif;
     font-weight: 600;
     font-size: clamp(5rem, 15vw, 12.5rem);
-    /* Scales smoothly from 80px up to 200px */
     display: block;
 }
 
-/* Mobile-optimized buttons stacking horizontally/vertically cleanly */
 .check-prjs {
     display: flex;
     flex-direction: column;
     gap: 10px;
     width: 100%;
     max-width: 400px;
-    /* Prevents buttons from spanning full screen width awkwardly */
 }
 
 .btn.check-prj {
@@ -279,11 +252,11 @@ h4 {
     border: 1px solid #1a1a1a;
     padding: 14px 24px;
     border-radius: 10px;
-    /* Clean pill style */
     display: flex;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
     margin: 0;
+    will-change: transform;
 }
 
 .check-prj-text-icon {
@@ -293,9 +266,10 @@ h4 {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
     font-weight: 600;
+    pointer-events: none;
+    /* Prevents visual jitter during cursor pull */
 }
 
-/* Setting up SVG arrow paths for hover interactions */
 .check-prj-text-icon svg {
     stroke: #1a1a1a;
     transition: transform 0.3s ease;
@@ -309,13 +283,10 @@ h4 {
 .btn.check-prj:hover svg {
     stroke: #fafafa;
     transform: translateY(3px);
-    /* Arrow subtly drops down on hover */
 }
 
-/* Mobile Image Treatment */
 .hero-image {
     display: block;
-    /* Fixed: Ensure it displays */
     width: 100%;
     max-width: 320px;
 }
@@ -325,19 +296,16 @@ h4 {
     height: auto;
     object-fit: cover;
     border-radius: 300px;
-    /* Balanced pill shape on mobile */
 }
 
 .about-me-img {
     display: none;
 }
 
-/* --- Desktop Refinements (>= 768px) --- */
 @media (min-width: 768px) {
     .hero-section {
         min-height: 90vh;
         flex-direction: row;
-        /* Side by side layouts */
         justify-content: space-between;
         text-align: left;
         padding: 0 8%;
@@ -359,12 +327,10 @@ h4 {
     .hero-image img {
         width: 100%;
         border-radius: 175px;
-        /* Restores your precise profile curvature */
     }
 
     .check-prjs {
         flex-direction: row;
-        /* Returns side-by-side array orientation */
         max-width: none;
     }
 
@@ -380,7 +346,7 @@ h4 {
     }
 }
 
-/* About teaser: section is the flex container */
+/* --- ABOUT TEASER --- */
 .about-teaser.reveal {
     display: flex;
     flex-direction: row;
@@ -424,7 +390,6 @@ h4 {
 }
 
 @media (min-width: 768px) {
-
     .field-card {
         display: inline-block;
         padding: 8px 30px;
@@ -455,12 +420,14 @@ h4 {
     object-fit: contain;
 }
 
-/* Cards */
+/* --- 3D PARALLAX PROJECT GRIDS --- */
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
     margin-top: 40px;
+    perspective: 1200px;
+    /* Establishes a 3D depth system space for cards */
 }
 
 #visual-design .project-grid {
@@ -475,13 +442,12 @@ h4 {
 
 .project-card {
     display: block;
-    transition: transform 0.4s ease;
     text-decoration: none;
     color: var(--text);
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
+    transform-style: preserve-3d;
+    /* Allows nested children to inherit 3D space planes */
+    transition: transform 0.15s ease-out;
+    will-change: transform;
 }
 
 .thumb-container {
@@ -492,6 +458,9 @@ h4 {
     border-radius: 30px;
     margin-bottom: 15px;
     background: var(--bg);
+    transform-style: preserve-3d;
+    transition: box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
 }
 
 .thumb-container::after {
@@ -500,6 +469,7 @@ h4 {
     inset: 0;
     background: rgba(0, 0, 0, 0);
     transition: background 0.35s ease;
+    z-index: 1;
 }
 
 .thumb-overlay {
@@ -515,12 +485,19 @@ h4 {
     letter-spacing: 0.04em;
     text-transform: uppercase;
     opacity: 0;
-    z-index: 1;
-    transition: opacity 0.35s ease;
+    z-index: 2;
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateZ(10px) scale(0.9);
+    /* Pushes layout off the baseline flat plane */
 }
 
 .thumb-overlay-text {
     font-size: 30px;
+}
+
+/* Hover States Orchestration */
+.project-card:hover .thumb-container {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
 }
 
 .project-card:hover .thumb-container::after {
@@ -529,10 +506,12 @@ h4 {
 
 .project-card:hover .thumb-overlay {
     opacity: 1;
+    transform: translateZ(30px) scale(1);
+    /* Pushes layer forward towards user view */
 }
 
 .project-card:hover .thumb {
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 
 .thumb {
@@ -541,9 +520,10 @@ h4 {
     display: block;
     object-fit: cover;
     background: var(--bg);
-    transition: transform 0.35s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* --- BUTTON LAYOUT ELEMENTS --- */
 .btn {
     display: inline-block;
     padding: 12px 30px;
@@ -551,15 +531,16 @@ h4 {
     text-decoration: none;
     color: var(--text);
     margin-top: 20px;
-    transition: 0.3s;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    will-change: transform;
 }
 
 .btn:hover {
     background: var(--text);
     color: var(--bg);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
 .check-prj svg path {
@@ -578,8 +559,7 @@ h4 {
     stroke: var(--bg);
 }
 
-/*PUBLISHED DESIGNS-----------------------------------------------------*/
-/* Published Section Layout */
+/* --- PUBLISHED DESIGNS SECTION --- */
 .published-section {
     position: relative;
 }
@@ -596,10 +576,9 @@ h4 {
     padding: 30px 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    transition: background-color 0.3s ease, padding-left 0.3s ease;
+    transition: background-color 0.3s ease, padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Typography styles matching your editorial theme */
 .project-category {
     font-size: 0.85rem;
     text-transform: uppercase;
@@ -625,7 +604,6 @@ h4 {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         cursor: pointer;
         align-items: center;
-        transition: background-color 0.3s ease, padding-left 0.3s ease;
     }
 
     .project-year {
@@ -634,17 +612,14 @@ h4 {
         text-align: right;
         color: #888;
     }
-
 }
 
-/* Hover effect on row text layout */
 .published-item a:hover {
     background-color: rgba(0, 0, 0, 0.02);
     padding-left: 35px;
-    /* Subtle elegant shift to the right */
 }
 
-/* The Cursor-following Preview Element */
+/* Cursor Context Hover Box */
 .hover-preview {
     position: fixed;
     top: 0;
@@ -652,7 +627,6 @@ h4 {
     width: 300px;
     height: 300px;
     pointer-events: none;
-    /* Crucial so cursor doesn't glitch */
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.8);
     z-index: 9999;
@@ -669,26 +643,28 @@ h4 {
     object-fit: cover;
 }
 
-/* Triggered class via JS */
 .hover-preview.visible {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
 }
 
-
-/* Scroll Animation Classes ----------------------------------------------------- */
+/* --- ASYNCHRONOUS ENGINE REVEAL EFFECTS --- */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
+    transform: translateY(40px) rotateX(4deg);
+    /* Beautiful editorial curve tilt */
+    transform-origin: bottom center;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
 }
 
 .reveal.active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) rotateX(0deg);
 }
 
-/* Footer */
+/* --- FOOTER LAYOUT --- */
 .site-footer {
     border-top: 1px solid var(--bg);
     background: var(--text);
@@ -746,8 +722,7 @@ h4 {
     font-size: 15px;
 }
 
-
-/* Detail Page Styles ----------------------------------------------------- */
+/* --- CASE STUDY SUBPAGES LAYOUT --- */
 .back-to-projects {
     position: fixed;
     top: 88px;
@@ -807,17 +782,10 @@ h4 {
 
 @media (min-width: 375px) {
     .project-hero {
-        display: grid;
         grid-template-rows: 50vh 40vh;
-        align-items: center;
-        background: #f2f2f2;
-        padding: 0;
-        z-index: 0;
         height: 90vh;
     }
 }
-
-
 
 .hero-mockup {
     grid-row: 1/2;
@@ -835,19 +803,12 @@ h4 {
 
 @media (min-width: 425px) {
     .project-hero {
-        display: grid;
         grid-template-rows: 50vh 40vh;
-        align-items: center;
-        background: #f2f2f2;
-        padding: 0;
-        z-index: 0;
         height: 90vh;
     }
 
     .hero-mockup img {
         width: 70%;
-        height: auto;
-        display: block;
     }
 }
 
@@ -861,7 +822,6 @@ h4 {
 
 .hero-meta h1 {
     font-size: 50px;
-    grid-column: 2/3;
     font-family: 'Instrument Serif', serif;
     margin: -10px 0;
 }
@@ -934,7 +894,6 @@ h4 {
     display: flex;
     flex-direction: column;
     gap: 0;
-
 }
 
 .gallery-img {
@@ -946,7 +905,6 @@ h4 {
     display: flex;
     flex-direction: column;
     gap: 20px;
-
 }
 
 .final-result-button {
@@ -987,11 +945,9 @@ h4 {
     .hero-mockup img {
         width: auto;
         max-width: 80%;
-        display: block;
     }
 
     .hero-meta {
-        grid-row: 2/3;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -999,7 +955,6 @@ h4 {
 
     .hero-meta h1 {
         font-size: 80px;
-        grid-column: 2/3;
         font-family: 'Instrument Serif', serif;
         margin: -10px 0;
     }
@@ -1036,8 +991,6 @@ h4 {
         padding-top: 5%;
         padding-bottom: 0;
     }
-
-
 }
 
 @media (min-width: 1024px) {
@@ -1049,7 +1002,6 @@ h4 {
     }
 }
 
-/* Published list links (open image) */
 .published-link {
     display: block;
     color: inherit;
@@ -1057,8 +1009,7 @@ h4 {
     padding: 8px 0;
 }
 
-
-/* About Page Specific Styles ----------------------------------------------------- */
+/* --- ABOUT PAGE SPECIFIC OVERRIDES --- */
 .about-grid {
     display: grid;
     grid-template-columns: 0.5fr 1.5fr;
@@ -1133,11 +1084,17 @@ h4 {
     font-weight: 600;
 }
 
+/* --- TABLET AND SMARTPHONE STRUCTURAL BREAKER --- */
 @media (max-width: 768px) {
     .navbar {
         justify-content: flex-end;
         align-items: center;
         padding: 14px 5%;
+    }
+
+    .navbar::before {
+        display: none;
+        /* Disables scroll meter line on viewports with mobile slideouts */
     }
 
     .nav-toggle {
@@ -1196,5 +1153,12 @@ h4 {
 
     .about-text h1 {
         font-size: 3.5rem;
+    }
+
+    /* Disable spatial math tracking transformations on small form factors */
+    .project-card,
+    .btn,
+    .btn.check-prj {
+        transform: none !important;
     }
 }

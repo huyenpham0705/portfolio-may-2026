@@ -99,49 +99,113 @@ if (navbar && navLinks && !navbar.querySelector('.nav-toggle')) {
     });
 }
 
-// Reveal sections on scroll
-const reveal = () => {
-    const reveals = document.querySelectorAll('.reveal');
-    reveals.forEach(el => {
-        const windowHeight = window.innerHeight;
-        const revealTop = el.getBoundingClientRect().top;
-        const revealPoint = 150;
-        if (revealTop < windowHeight - revealPoint) {
-            el.classList.add('active');
+// --- DYNAMIC NAV SCROLL METRIC PROGRESS TRACKER ---
+window.addEventListener('scroll', () => {
+    if (navbar && window.innerWidth > 768) {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progressPercentage = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
+        // Pushes the exact calculation parameter into the CSS layout engine
+        navbar.style.setProperty('--scroll-width', `${progressPercentage}%`);
+    }
+}, { passive: true }); // Passive flag ensures scrolling remains smooth
+
+// --- ASYNCHRONOUS INTERSECTION OBSERVER REVEAL ENGINE ---
+// Replaces continuous position calculations inside window scroll loops
+const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Stop tracking the element once it enters the viewport frame
+            observer.unobserve(entry.target);
         }
     });
-};
+}, {
+    root: null, // Default browser window view frame boundary
+    threshold: 0.12, // Element fires layout class when 12% enters screen area
+    rootMargin: "0px 0px -30px 0px"
+});
 
-window.addEventListener('scroll', reveal);
-// Run once on load
-reveal();
+document.querySelectorAll('.reveal').forEach(el => {
+    revealObserver.observe(el);
+});
+
+// --- 3D PARALLAX COORDINATE MATRIX ROTATOR ---
+const projectCards = document.querySelectorAll('.project-card');
+
+projectCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 768) return; // Disable mathematical transforms on mobile
+
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left; // Mouse position inside card element frame
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        // Map mouse vector path coordinates into tilt parameters (-8deg to 8deg max range)
+        const tiltX = ((centerY - y) / centerY) * 8;
+        const tiltY = ((x - centerX) / centerX) * 8;
+
+        card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+    });
+
+    // Smooth deceleration back to straight layout matrix on boundary leave
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+});
+
+// --- MAGNETIC BUTTON SPRING SYSTEM TRACKER ---
+const magneticButtons = document.querySelectorAll('.btn');
+
+magneticButtons.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 768) return;
+
+        const rect = btn.getBoundingClientRect();
+        // Calculate coordinate distance offset vector from center axis
+        const x = e.clientX - rect.left - (rect.width / 2);
+        const y = e.clientY - rect.top - (rect.height / 2);
+
+        // Pull the button towards hardware cursor path by exactly 30% of vector offset
+        btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    });
+
+    btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0px, 0px)';
+    });
+});
 
 // Hover preview for published items
 const items = document.querySelectorAll('.published-item');
 const preview = document.getElementById('hover-preview');
 const previewImg = document.getElementById('preview-img');
 
-items.forEach(item => {
-    // 1. When mouse enters a row
-    item.addEventListener('mouseenter', (e) => {
-        const imageSrc = item.getAttribute('data-image');
-        previewImg.src = imageSrc;
-        preview.classList.add('visible');
-    });
+if (preview && previewImg) {
+    items.forEach(item => {
+        // 1. When mouse enters a row
+        item.addEventListener('mouseenter', () => {
+            const imageSrc = item.getAttribute('data-image');
+            if (imageSrc) {
+                previewImg.src = imageSrc;
+                preview.classList.add('visible');
+            }
+        });
 
-    // 2. When mouse moves inside a row
-    item.addEventListener('mousemove', (e) => {
-        // e.clientX and e.clientY obtain hardware cursor window positions
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
+        // 2. When mouse moves inside a row
+        item.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
 
-        // Push styles seamlessly to follow cursor path
-        preview.style.top = `${mouseY}px`;
-        preview.style.left = `${mouseX}px`;
-    });
+            // Push styles seamlessly to follow cursor path
+            preview.style.top = `${mouseY}px`;
+            preview.style.left = `${mouseX}px`;
+        });
 
-    // 3. When mouse leaves a row
-    item.addEventListener('mouseleave', () => {
-        preview.classList.remove('visible');
+        // 3. When mouse leaves a row
+        item.addEventListener('mouseleave', () => {
+            preview.classList.remove('visible');
+        });
     });
-});
+}
