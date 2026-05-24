@@ -211,43 +211,44 @@ if (preview && previewImg) {
 }
 
 // --- HERO IMAGE 3D MULTI-AXIS SHEEN TRACKER ---
-const heroImgContainer = document.querySelector('.hero-image-interactive');
+// --- MULTI-AXIS 3D TILT & SHEEN TRACKER (HERO & ABOUT IMAGES) ---
+const interactiveImages = document.querySelectorAll('.hero-image-interactive, .about-me-img-container');
 
-if (heroImgContainer) {
-    heroImgContainer.addEventListener('mousemove', (e) => {
-        // Skip processing heavy structural math operations on mobile viewports
+interactiveImages.forEach(container => {
+    container.addEventListener('mousemove', (e) => {
+        // Skip processing heavy spatial math operations on mobile viewports
         if (window.innerWidth <= 768) return;
 
-        const rect = heroImgContainer.getBoundingClientRect();
+        const rect = container.getBoundingClientRect();
 
-        // Step 1: Calculate vector distances relative to container viewport bounds
+        // Step 1: Calculate cursor vector positions relative to container bounds
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
-        // Step 2: Convert coordinate planes into degree metrics (-10deg to 10deg bounds)
+        // Step 2: Convert coordinates into degree metrics (-10deg to 10deg bounds)
         const rotateX = ((centerY - y) / centerY) * 10;
-        const rotateY = ((x - centerX) / centerX) * -10; // Reversed vector to natural tilt path
+        const rotateY = ((x - centerX) / centerX) * -10; // Reversed vector to feel natural
 
-        // Step 3: Map precise percentage positioning metrics for lighting radial engine
+        // Step 3: Map precise percentage positioning for lighting radial engine
         const sheenX = (x / rect.width) * 100;
         const sheenY = (y / rect.height) * 100;
 
-        // Step 4: Inject mutations straight into elements
-        heroImgContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-        heroImgContainer.style.setProperty('--sheen-x', `${sheenX}%`);
-        heroImgContainer.style.setProperty('--sheen-y', `${sheenY}%`);
+        // Step 4: Inject dynamic values into elements
+        container.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        container.style.setProperty('--sheen-x', `${sheenX}%`);
+        container.style.setProperty('--sheen-y', `${sheenY}%`);
     });
 
-    // Reset components seamlessly to neutral baseline positions on boundary exit
-    heroImgContainer.addEventListener('mouseleave', () => {
-        heroImgContainer.style.transform = 'rotateX(0deg) rotateY(0deg)';
-        heroImgContainer.style.setProperty('--sheen-x', '50%');
-        heroImgContainer.style.setProperty('--sheen-y', '50%');
+    // Reset components seamlessly back to flat baseline positions on mouse exit
+    container.addEventListener('mouseleave', () => {
+        container.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        container.style.setProperty('--sheen-x', '50%');
+        container.style.setProperty('--sheen-y', '50%');
     });
-}
+});
 
 // --- SMOOTH LERP CUSTOM CURSOR ENGINE ---
 const customCursor = document.querySelector('.custom-cursor');
