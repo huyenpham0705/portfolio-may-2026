@@ -78,6 +78,79 @@ h4 {
     }
 }
 
+/* --- PAGE LOAD ENTRANCE ANIMATIONS --- */
+.hero-content h1 {
+    overflow: hidden; /* Mask to ensure the characters slide up cleanly */
+}
+
+/* Base structural setups for split words */
+.interactive-title {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.interactive-title .word-span {
+    display: inline-block;
+    /* overflow: hidden; */
+    vertical-align: bottom;
+}
+
+.interactive-title .char-span {
+    display: inline-block;
+    transform: translateY(105%) rotate(5deg);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+/* Triggers when the JS engine drops the active state */
+.hero-section.loaded .char-span {
+    transform: translateY(0) rotate(0deg);
+}
+
+/* Staggered entries for the call-to-action buttons */
+.load-reveal-delayed {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.6s; /* Delays appearance until after title renders */
+}
+
+.hero-section.loaded .load-reveal-delayed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Reveal transition loop for the main graphic element */
+.load-reveal-image {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: 0.3s;
+}
+
+.hero-section.loaded .load-reveal-image {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+
+/* --- HOVER INTERACTION FOR TITLE HEADERS --- */
+/* Scale up slightly and alter tracking metrics beautifully when hovered */
+.interactive-title .char-span {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                color 0.4s ease, 
+                letter-spacing 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Spring letters up individually with slight layout breathing room */
+.interactive-title .char-span:hover {
+    color: var(--accent);
+    transform: translateY(-8px) scale(1.05);
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
 .container {
     width: 90%;
     max-width: 1200px;
