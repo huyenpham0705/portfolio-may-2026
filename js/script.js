@@ -345,3 +345,146 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, 1500);
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const hero = document.getElementById("hero");
+    if (!hero) return;
+
+    // 1. Force container constraints so the canvas pins perfectly to the background
+    hero.style.position = "relative";
+    hero.style.overflow = "hidden";
+
+    // 2. Create and inject the Background Canvas
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    Object.assign(canvas.style, {
+        position: "absolute",
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        zIndex: "1", // Placed directly behind content layers
+        pointerEvents: "none" // Ensures links and buttons remain fully clickable
+    });
+
+    hero.prepend(canvas);
+
+    // Ensure your typography layers over the canvas context safely
+    const heroContent = hero.querySelector(".hero-content");
+    if (heroContent) {
+        heroContent.style.position = "relative";
+        heroContent.style.zIndex = "10";
+    }
+
+    // 3. Handle Scaling Windows
+    let width = canvas.width = hero.offsetWidth;
+    let height = canvas.height = hero.offsetHeight;
+
+    window.addEventListener("resize", () => {
+        width = canvas.width = hero.offsetWidth;
+        height = canvas.height = hero.offsetHeight;
+    });
+
+    // 4. Cursor Position Vector Trackers
+    let mouseX = width / 2;
+    let mouseY = height / 2;
+    let currentMouseX = width / 2;
+    let currentMouseY = height / 2;
+
+    hero.addEventListener("mousemove", (e) => {
+        const rect = hero.getBoundingClientRect();
+        mouseX = e.clientX - rect.left;
+        mouseY = e.clientY - rect.top;
+    });
+
+    hero.addEventListener("mouseleave", () => {
+        mouseX = width / 2;
+        mouseY = height / 2;
+    });
+
+    // 5. Blob Engine Data (The 4 exact specific color palettes & sizing configurations)
+    const blobConfigs = [
+        { r: 155, g: 136, b: 220, maxAlpha: 0.65, radius: 250 }, // #9B88DC
+        { r: 231, g: 139, b: 155, maxAlpha: 0.60, radius: 220 }, // #E78B9B
+        { r: 255, g: 191, b: 53, maxAlpha: 1.00, radius: 180 }, // #FFBF35
+        { r: 199, g: 228, b: 241, maxAlpha: 0.92, radius: 260 },  // #C7E4F1
+        { r: 218, g: 156, b: 106, maxAlpha: 0.92, radius: 260 },  // #da9c6a
+    ];
+
+    // Initialize individual circle attributes (positions, individual drifting paths, opacity phases)
+    const circles = blobConfigs.map((config) => {
+        return {
+            ...config,
+            // Scattered start layout across the viewport area
+            x: Math.random() * width/2,
+            y: Math.random() * height/2,
+            // Small target offsets for the continuous slow drift movement
+            targetX: Math.random() * width,
+            targetY: Math.random() * height,
+            // Phase parameter tracking for the opacity pulsing loop
+            alphaPhase: Math.random() * Math.PI * 2,
+            alphaSpeed: 0.005 + Math.random() * 0.03, // Determines how fast opacity transitions happen
+            currentAlpha: 0
+        };
+    });
+
+    // 6. Main Draw Loop (Equivalent to the p5.js draw() loop function)
+    function draw() {
+        // Clear canvas context box per frame rendering cycle
+        ctx.clearRect(0, 0, width, height);
+
+        // Optional Base Clear Color matching layout background canvas environments
+        ctx.fillStyle = "#fafafa";
+        ctx.fillRect(0, 0, width, height);
+
+        // Smooth out cursor movement vectors using a gentle inertial interpolation (LERP step layout)
+        currentMouseX += (mouseX - currentMouseX) * 1;
+        currentMouseY += (mouseY - currentMouseY) * 1;
+
+        // Calculate a tiny global layout offset factor based on cursor center variance
+        const cursorOffsetX = (currentMouseX - width / 2) * 0.08;
+        const cursorOffsetY = (currentMouseY - height / 2) * 0.08;
+
+        circles.forEach((circle) => {
+            // A. Update coordinate drift arrays smoothly over runtime metrics
+            circle.x += (circle.targetX - circle.x) * 0.005;
+            circle.y += (circle.targetY - circle.y) * 0.005;
+
+            // Pick a brand new coordinate position cluster if a blob approaches its destination target boundaries
+            if (Math.abs(circle.targetX - circle.x) < 10 && Math.abs(circle.targetY - circle.y) < 10) {
+                circle.targetX = Math.random() * width;
+                circle.targetY = Math.random() * height;
+            }
+
+            // B. Animate opacity states from 0 to max alpha seamlessly using standard Math.sin equations
+            circle.alphaPhase += circle.alphaSpeed;
+            // Maps the sin curve window (-1 to 1) beautifully straight into positive values (0 to 1)
+            const pulseFactor = (Math.sin(circle.alphaPhase) + 1) / 2;
+            circle.currentAlpha = pulseFactor * circle.maxAlpha;
+
+            // C. Combine dynamic position attributes + soft tracking displacements
+            const renderX = circle.x + cursorOffsetX;
+            const renderY = circle.y + cursorOffsetY;
+
+            // D. Render the radiant blur glow utilizing a precise radial gradient paint stroke setup
+            const gradient = ctx.createRadialGradient(
+                renderX, renderY, 0,
+                renderX, renderY, circle.radius
+            );
+
+            gradient.addColorStop(0, `rgba(${circle.r}, ${circle.g}, ${circle.b}, ${circle.currentAlpha})`);
+            gradient.addColorStop(0.7, `rgba(${circle.r}, ${circle.g}, ${circle.b}, ${circle.currentAlpha * 0.5})`);
+            gradient.addColorStop(1, `rgba(${circle.r}, ${circle.g}, ${circle.b}, 0)`); // Soft transparent boundary edge
+
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(renderX, renderY, circle.radius, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    // Fire rendering thread cycle
+    requestAnimationFrame(draw);
+});

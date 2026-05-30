@@ -62,6 +62,33 @@ h4 {
     font-size: 18px;
 }
 
+/* HERO */
+/* Ensure the hero container can hold absolute elements safely */
+#hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: #fafafa;
+}
+
+/* Keeps your text and buttons above the background gradients */
+.hero-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* Master style for the dynamically generated blurry radiant blobs */
+.radiant-js-blob {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 1;
+    filter: blur(90px);
+    /* Prevents the blobs from intercepting your cursor changes */
+    pointer-events: none;
+    /* Tells the GPU to prepare for continuous translation transformations */
+    will-change: transform;
+}
+
 @media (min-width: 768px) {
     /* h2 font-size now uses clamp() above to remain flexible; removed fixed 70px override */
 
@@ -169,9 +196,11 @@ h4 {
         left: 0;
         width: 18px;
         height: 18px;
-        border: 1.5px solid #9b88dc;
-        background-color: #9b88dc;
-        box-shadow: 0 0 8px rgba(242, 242, 242, 0.3);
+        border: 1.5px solid rgba(155, 136, 220, 0.55);
+        background-color: rgba(155, 136, 220, 0.9);
+        box-shadow: 0 0 0 1px rgba(155, 136, 220, 0.2),
+            0 0 10px rgba(155, 136, 220, 0.35),
+            0 0 20px rgba(155, 136, 220, 0.2);
         /* Matches your dark text accent color */
         border-radius: 50%;
         pointer-events: none;
@@ -189,9 +218,12 @@ h4 {
     .custom-cursor.hovered {
         width: 35px;
         height: 35px;
-        background-color: #9b88dc;
+        background-color: rgba(155, 136, 220, 0.45);
         /* Soft accent-tinted fill (purple) */
-        border-color: #9b88dc;
+        border-color: rgba(155, 136, 220, 0.35);
+        box-shadow: 0 0 0 1px rgba(155, 136, 220, 0.18),
+            0 0 18px rgba(155, 136, 220, 0.35),
+            0 0 32px rgba(155, 136, 220, 0.2);
         /* Subtle glow to give the cursor a colored presence */
     }
 }
@@ -546,7 +578,7 @@ h4 {
 
 @media (min-width: 768px) {
     .hero-section {
-        min-height: 90vh;
+        min-height: 100vh;
         flex-direction: row;
         justify-content: space-between;
         text-align: left;
@@ -620,6 +652,7 @@ h4 {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
 .intro-text {
     padding-top: 2%;
     padding-bottom: 2%;
