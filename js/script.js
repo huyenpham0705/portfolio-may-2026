@@ -292,59 +292,22 @@ if (customCursor && window.innerWidth > 768) {
 }
 
 // --- HERO TEXT SPLITTING & TIMED LOAD ENGINE ---
-document.addEventListener('DOMContentLoaded', () => {
-    const heroSection = document.getElementById('hero');
-    const titles = document.querySelectorAll('.interactive-title');
+document.addEventListener("DOMContentLoaded", () => {
+    const animatedElements = document.querySelectorAll('.fade-in-up, .hero-content .title, .hero-content .hero-introduction, .hero-content .check-prjs');
 
-    titles.forEach(title => {
-        // Break text by spaces to retain words cleanly
-        const words = title.textContent.split(' ');
-        title.textContent = ''; // Flush original text string out
-
-        words.forEach((word, wordIndex) => {
-            const wordSpan = document.createElement('span');
-            wordSpan.className = 'word-span';
-
-            // Break individual word structures straight down to characters
-            const characters = word.split('');
-            characters.forEach((char, charIndex) => {
-                const charSpan = document.createElement('span');
-                charSpan.className = 'char-span';
-                charSpan.textContent = char;
-
-                // Calculate incremental staggered delay sequence loops for page load
-                // (Global sequence placement based on characters across the phrase block)
-                const globalIndex = (wordIndex * 5) + charIndex;
-                charSpan.style.transitionDelay = `${globalIndex * 0.04}s`;
-
-                wordSpan.appendChild(charSpan);
-            });
-
-            title.appendChild(wordSpan);
-
-            // Re-insert standard spacing structures back between split phrase spans
-            if (wordIndex < words.length - 1) {
-                const space = document.createTextNode(' ');
-                title.appendChild(space);
-            }
-        });
+    animatedElements.forEach((element) => {
+        element.classList.add('fade-in-up');
     });
 
-    // Fire the activation classes inside a safe animation frame window
     requestAnimationFrame(() => {
-        if (heroSection) {
-            heroSection.classList.add('loaded');
-        }
-    });
-
-    // Clean up startup load delays after initial execution sequence completes
-    // This allows hover transition rules to handle cursor entries immediately
-    setTimeout(() => {
-        document.querySelectorAll('.char-span').forEach(span => {
-            span.style.transitionDelay = '0s';
+        requestAnimationFrame(() => {
+            animatedElements.forEach((element) => {
+                element.classList.add('active');
+            });
         });
-    }, 1500);
+    });
 });
+
 document.addEventListener("DOMContentLoaded", () => {
     const hero = document.getElementById("hero");
     if (!hero) return;
@@ -416,8 +379,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return {
             ...config,
             // Scattered start layout across the viewport area
-            x: Math.random() * width/2,
-            y: Math.random() * height/2,
+            x: Math.random() * width / 2,
+            y: Math.random() * height / 2,
             // Small target offsets for the continuous slow drift movement
             targetX: Math.random() * width,
             targetY: Math.random() * height,
