@@ -1278,12 +1278,34 @@ h4 {
 .gallery-section {
     display: flex;
     flex-direction: column;
-    gap: 0;
+    gap: 24px;
 }
 
 .gallery-img {
     width: 100%;
+    display: block;
     border-radius: 4px;
+}
+
+.image-container-socialmedia {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+@media (min-width: 768px) {
+    .image-container-socialmedia {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+        width: 100%;
+    }
+}
+
+.image-container-socialmedia .gallery-img {
+    height: auto;
+    width: 100%;
 }
 
 .final-results-buttons {
