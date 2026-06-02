@@ -197,6 +197,78 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Select all the grid/gallery images you want to be expandable
+            // Based on your HTML layout, we target the gallery section images
+            const galleryImages = document.querySelectorAll(".gallery-section .gallery-img");
+
+            if (galleryImages.length === 0) return;
+
+            // 2. Dynamically create the Lightbox Modal Structure
+            const modal = document.createElement("div");
+            modal.className = "lightbox-modal";
+            modal.setAttribute("role", "dialog");
+            modal.setAttribute("aria-hidden", "true");
+
+            modal.innerHTML = `
+        <div class="lightbox-overlay"></div>
+        <button class="lightbox-close" aria-label="Close modal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="Expanded view">
+        </div>
+    `;
+
+            document.body.appendChild(modal);
+
+            // Cache structural references
+            const modalImg = modal.querySelector(".lightbox-content img");
+            const closeBtn = modal.querySelector(".lightbox-close");
+            const overlay = modal.querySelector(".lightbox-overlay");
+
+            // 3. Helper Functions to Open and Close Modal
+            const openLightbox = (src, alt) => {
+                modalImg.src = src;
+                modalImg.alt = alt || "Expanded project view";
+                modal.classList.add("is-active");
+                modal.setAttribute("aria-hidden", "false");
+                document.body.style.overflow = "hidden"; // Prevent background body scrolling
+            };
+
+            const closeLightbox = () => {
+                modal.classList.remove("is-active");
+                modal.setAttribute("aria-hidden", "true");
+                document.body.style.overflow = ""; // Restore background body scrolling
+                // Clear src after transitions fade out to avoid flash next time it opens
+                setTimeout(() => { modalImg.src = ""; }, 300);
+            };
+
+            // 4. Attach Event Listeners
+            galleryImages.forEach(img => {
+                img.style.cursor = "pointer"; // Make sure users know it is clickable
+                img.addEventListener("click", () => {
+                    openLightbox(img.src, img.alt);
+                });
+            });
+
+            // Close on Close Button click
+            closeBtn.addEventListener("click", closeLightbox);
+
+            // Close on Overlay background click
+            overlay.addEventListener("click", closeLightbox);
+
+            // Keyboard support: Close on 'Escape' key
+            window.addEventListener("keydown", (e) => {
+                if (e.key === "Escape" && modal.classList.contains("is-active")) {
+                    closeLightbox();
+                }
+            });
+        });
     </script>
     <script src="../../js/script.js"></script>
 </body>
