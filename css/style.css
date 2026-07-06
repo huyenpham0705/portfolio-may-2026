@@ -1561,92 +1561,42 @@ h4 {
 }
 
 /* ---------------------------------------My roots */
-/* Lightbox Container Hidden State */
-.lightbox-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 9999;
-    /* Ensure it stays above navbars and custom cursors */
+.main-visual {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    gap: 10%;
 }
 
-/* Lightbox Active State */
-.lightbox-modal.is-active {
-    opacity: 1;
-    pointer-events: auto;
+.myroots-1, .myroots-3  {
+    flex-direction: row;
 }
 
-/* Dark/Blured semi-transparent background overlay */
-.lightbox-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    /* Light backdrop matching your video's aesthetic */
-    backdrop-filter: blur(8px);
-    /* Optional: Soft glass effect */
+.myroots-2, .myroots-4 {
+    flex-direction: row-reverse;
 }
 
-/* Lightbox Content wrapper containing the image */
-.lightbox-content {
-    max-height: 85vh;
-    /* Caps height at 85% of screen height */
-    width: 90%;
-    max-width: 700px;
-    /* Clean layout constraint width */
-    overflow-y: auto;
-    /* Activates vertical scrollbar if content exceeds max-height */
-    background: var(--bg);
-    /* Match your dark aesthetic */
-    padding: 30px;
-    border-radius: 12px;
-    box-sizing: border-box;
-}
-
-.lightbox-modal.is-active .lightbox-content {
-    transform: scale(1);
-}
-
-.lightbox-content img {
-    display: block;
-    width: auto;
+.main-img {
+    width: 40%;
     height: auto;
-    max-width: 100%;
-    max-height: 85vh;
-    object-fit: contain;
 }
 
-/* Minimalist Circular Close Button */
-.lightbox-close {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    color: #1e1e1e;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 10;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, background-color 0.2s ease;
+.process-visual {
+    display:none;
+    /* display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* FIX 1: Prevents flexbox from stretching image heights to match */
+    /* width: 100%;
+    margin-top: 3%;
+    justify-content: space-between; */
 }
 
-.lightbox-close:hover {
-    transform: scale(1.05);
-    background-color: #f5f5f5;
+.process-img-2 {          
+    width: 50%;        
+    height: auto;  
+}
+
+.process-img-1 {
+    width: 32%;
+    height: auto;
 }
