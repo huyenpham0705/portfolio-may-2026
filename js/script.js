@@ -1,12 +1,69 @@
 // Smooth Scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        const target = this.getAttribute('href');
+
+        if (!target || target === '#') {
+            e.preventDefault();
+            return;
+        }
+
+        const section = document.querySelector(target);
+
+        if (!section) {
+            return;
+        }
+
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
+        section.scrollIntoView({
             behavior: 'smooth'
         });
     });
 });
+
+function openLightbox(contentHtml) {
+    let lightbox = document.querySelector('.lightbox-overlay');
+    const closeLightbox = () => {
+        if (!lightbox) {
+            return;
+        }
+
+        lightbox.classList.remove('is-open');
+        document.body.classList.remove('lightbox-open');
+    };
+
+    if (!lightbox) {
+        lightbox = document.createElement('div');
+        lightbox.className = 'lightbox-overlay';
+        lightbox.innerHTML = `
+            <div class="lightbox-backdrop"></div>
+            <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="Process details">
+                <button type="button" class="lightbox-close" aria-label="Close dialog">&times;</button>
+                <div class="lightbox-content"></div>
+            </div>
+        `;
+
+        document.body.appendChild(lightbox);
+
+        lightbox.querySelector('.lightbox-backdrop').addEventListener('click', closeLightbox);
+        lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    }
+
+    lightbox.querySelector('.lightbox-content').innerHTML = contentHtml;
+    lightbox.classList.add('is-open');
+    document.body.classList.add('lightbox-open');
+}
 
 const navbar = document.querySelector('.navbar');
 const navLinks = document.querySelector('.nav-links');

@@ -1568,11 +1568,13 @@ h4 {
     gap: 10%;
 }
 
-.myroots-1, .myroots-3  {
+.myroots-1,
+.myroots-3 {
     flex-direction: row;
 }
 
-.myroots-2, .myroots-4 {
+.myroots-2,
+.myroots-4 {
     flex-direction: row-reverse;
 }
 
@@ -1582,7 +1584,7 @@ h4 {
 }
 
 .process-visual {
-    display:none;
+    display: none;
     /* display: flex;
     flex-direction: row;
     align-items: flex-start; /* FIX 1: Prevents flexbox from stretching image heights to match */
@@ -1591,12 +1593,80 @@ h4 {
     justify-content: space-between; */
 }
 
-.process-img-2 {          
-    width: 50%;        
-    height: auto;  
+.process-img-2 {
+    width: 50%;
+    height: auto;
 }
 
 .process-img-1 {
     width: 32%;
     height: auto;
+}
+
+/* Style for images stacked inside the scrollable modal */
+.lightbox-content .process-popup-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 15px 0;
+    object-fit: contain;
+}
+
+/* Optional wrapper styling for process steps */
+.lightbox-content .process-step {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(18, 18, 18, 0.72);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+}
+
+.lightbox-overlay.is-open {
+    display: flex;
+}
+
+.lightbox-panel {
+    position: relative;
+    width: min(860px, 100%);
+    max-height: min(82vh, 900px);
+    overflow: auto;
+    background: #fafafa;
+    color: #1a1a1a;
+    border-radius: 24px;
+    padding: 32px 28px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+}
+
+.lightbox-close {
+    position: sticky;
+    top: 0;
+    margin-left: auto;
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 999px;
+    background: #1a1a1a;
+    color: #fafafa;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.lightbox-content {
+    margin-top: 18px;
+}
+
+body.lightbox-open {
+    overflow: hidden;
 }
