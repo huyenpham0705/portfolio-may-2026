@@ -1569,18 +1569,35 @@ h4 {
 }
 
 .myroots-1,
-.myroots-3 {
-    flex-direction: row;
-}
-
+.myroots-3,
 .myroots-2,
 .myroots-4 {
-    flex-direction: row-reverse;
+    flex-direction: column;
+}
+
+@media (min-width: 767px) {
+
+    .myroots-1,
+    .myroots-3 {
+        flex-direction: row;
+    }
+
+    .myroots-2,
+    .myroots-4 {
+        flex-direction: row-reverse;
+    }
 }
 
 .main-img {
     width: 40%;
     height: auto;
+}
+
+@media (max-width: 767px) {
+    .main-img {
+        width: 100%;
+        max-width: 100%;
+    }
 }
 
 .process-visual {
@@ -1593,30 +1610,69 @@ h4 {
     justify-content: space-between; */
 }
 
-.process-img-2 {
-    width: 50%;
-    height: auto;
-}
-
-.process-img-1 {
-    width: 32%;
-    height: auto;
-}
-
-/* Style for images stacked inside the scrollable modal */
+/* Style for images inside the scrollable modal */
 .lightbox-content .process-popup-img {
-    width: 100%;
+    flex: 0 0 clamp(220px, 28vw, 300px);
+    width: clamp(220px, 28vw, 300px);
+    max-width: clamp(220px, 28vw, 300px);
     height: auto;
     border-radius: 8px;
-    margin: 15px 0;
+    margin: 0 auto;
     object-fit: contain;
+    align-self: flex-start;
 }
 
 /* Optional wrapper styling for process steps */
 .lightbox-content .process-step {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 25px;
     border-bottom: 1px solid #eee;
     padding-bottom: 15px;
+    text-align: center;
+}
+
+.lightbox-content .process-step h3 {
+    flex: 1 1 100%;
+    margin: 0;
+}
+
+.lightbox-content .process-step p {
+    flex: 1 1 0;
+    margin: 0;
+}
+
+.lightbox-panel,
+.lightbox-content {
+    text-align: center;
+}
+
+.lightbox-content .process-modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* .lightbox-content .process-modal-body > * + * {
+    margin-top: 24px;
+} */
+
+@media (max-width: 767px) {
+    .lightbox-content .process-step {
+        flex-direction: column;
+    }
+
+    .lightbox-content .process-step p,
+    .lightbox-content .process-popup-img {
+        flex-basis: auto;
+        max-width: 100%;
+        width: 100%;
+    }
 }
 
 .lightbox-overlay {
@@ -1637,7 +1693,8 @@ h4 {
 
 .lightbox-panel {
     position: relative;
-    width: min(860px, 100%);
+    width: min(1120px, calc(100vw - 48px));
+    max-width: 1120px;
     max-height: min(82vh, 900px);
     overflow: auto;
     background: #fafafa;

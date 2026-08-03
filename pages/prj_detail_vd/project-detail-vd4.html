@@ -128,11 +128,11 @@
                                 rooted deeply in Vietnamese tradition.</p>
                         </div>
                         <div class="process-card reveal">
-                            <a class="btn final-result-button" href="#"
-                                data-process-title="1. Trung Thu - Process Breakdown"
+                            <a class="btn final-result-button" href="#" data-process-title="1. Trung Thu - Festival"
                                 data-process-desc="Trung Thu (means Mid autumn) is a festival where we celebrate the full moon - when the moon is the fullest of the year. In this festival, we wear a customs of Lân/Li - a mythical lion and dance under the moonlight. The animal in the design in the Lân."
                                 data-img-1="../../assets/detail/my-roots/1.1-inspiration.png"
-                                data-img-2="../../assets/detail/my-roots/2.2-explain.png">
+                                data-img-2="../../assets/detail/my-roots/1.2-original.png"
+                                data-img-3="../../assets/detail/my-roots/1.3-final.png">
                                 <div class="final-result-button-content">
                                     <p>Check out my process</p>
                                 </div>
@@ -157,14 +157,21 @@
                                 modern lens, and the classical performing art of Tuồng.</p>
                         </div>
                         <div class="process-card reveal">
-                            <h4 class="reveal"> Process </h4>
-                            <p class="main-text">I began with a reference and a quick sketch, then layered in thousands
+                            <a class="btn final-result-button" href="#" data-process-title="1. Trung Thu - Festival"
+                                data-process-desc="I began with a reference and a quick sketch, then layered in thousands
                                 of modern
                                 objects to build up the composition.
                                 The background draws from an iconic Vietnamese dragon motif dating back to the Lý
                                 dynasty in the
                                 12th century — one of
-                                our earliest and most recognizable national designs.</p>
+                                our earliest and most recognizable national designs."
+                                data-img-1="../../assets/detail/my-roots/1.1-inspiration.png"
+                                data-img-2="../../assets/detail/my-roots/1.2-original.png"
+                                data-img-3="../../assets/detail/my-roots/1.3-final.png">
+                                <div class="final-result-button-content">
+                                    <p>Check out my process</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -184,10 +191,16 @@
                                 Vietnamese people, myself included.</p>
                         </div>
                         <div class="process-card reveal">
-                            <h4 class="reveal"> Process </h4>
-                            <p class="main-text">I began with a quick sketch, then layered in color and brush‑stroke
+                            <a class="btn final-result-button" href="#" data-process-title="1. Trung Thu - Festival"
+                                data-process-desc="I began with a quick sketch, then layered in color and brush‑stroke
                                 textures to give the design a richer, more
-                                handcrafted feel.</p>
+                                handcrafted feel." data-img-1="../../assets/detail/my-roots/1.1-inspiration.png"
+                                data-img-2="../../assets/detail/my-roots/1.2-original.png"
+                                data-img-3="../../assets/detail/my-roots/1.3-final.png">
+                                <div class="final-result-button-content">
+                                    <p>Check out my process</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -207,10 +220,17 @@
                                 personal memories for me.</p>
                         </div>
                         <div class="process-card reveal">
-                            <h4 class="reveal"> Process </h4>
-                            <p class="main-text">These are the changes I made. I adjusted many elements, aiming to give
+                            <a class="btn final-result-button" href="#" data-process-title="1. Trung Thu - Festival"
+                                data-process-desc="These are the changes I made. I adjusted many elements, aiming to give
                                 the piece a more modern feel while still
-                                preserving its traditional essence.</p>
+                                preserving its traditional essence."
+                                data-img-1="../../assets/detail/my-roots/1.1-inspiration.png"
+                                data-img-2="../../assets/detail/my-roots/1.2-original.png"
+                                data-img-3="../../assets/detail/my-roots/1.3-final.png">
+                                <div class="final-result-button-content">
+                                    <p>Check out my process</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -263,20 +283,22 @@
                     e.preventDefault(); // Prevent page jump on # link click
 
                     // 1. Extract process details from data attributes
-                    const title = button.dataset.processTitle || "Process";
+                    const title = button.dataset.processTitle || "";
                     const desc = button.dataset.processDesc || "";
                     const img1 = button.getAttribute('data-img-1');
                     const img2 = button.getAttribute('data-img-2');
+                    const img3 = button.getAttribute('data-img-3');
 
                     // 2. Assemble the scrollable HTML layout for the modal
                     const processModalHtml = `
-                <div class="process-modal-body">
+                <div class="process-modal-body" style="display: flex; flex-direction: column; align-items: center; gap: 32px;">
                     <h2>${title}</h2>
-                    <p style="margin: 10px 0 20px 0; line-height: 1.6;">${desc}</p>
+                    <p style="max-width: 700px; margin: 10px auto 20px auto; line-height: 1.6;">${desc}</p>
                     
                     <div class="process-step">
                         ${img1 ? `<img src="${img1}" alt="Sketch Process" class="process-popup-img">` : ''}
                         ${img2 ? `<img src="${img2}" alt="Vector Process" class="process-popup-img">` : ''}
+                        ${img3 ? `<img src="${img3}" alt="Final Process" class="process-popup-img">` : ''}
                     </div>
                 </div>
             `;
