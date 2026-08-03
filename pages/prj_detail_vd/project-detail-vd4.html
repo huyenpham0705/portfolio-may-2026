@@ -130,8 +130,8 @@
                         <div class="process-card reveal">
                             <a class="btn final-result-button" href="#"
                                 data-process-title="1. Trung Thu - Process Breakdown"
-                                data-process-desc="Here is a step-by-step look at how the Lân/Li lion design was researched, sketched, and digitized."
-                                data-img-1="../../assets/detail/my-roots/2.1-sketch.png"
+                                data-process-desc="Trung Thu (means Mid autumn) is a festival where we celebrate the full moon - when the moon is the fullest of the year. In this festival, we wear a customs of Lân/Li - a mythical lion and dance under the moonlight. The animal in the design in the Lân."
+                                data-img-1="../../assets/detail/my-roots/1.1-inspiration.png"
                                 data-img-2="../../assets/detail/my-roots/2.2-explain.png">
                                 <div class="final-result-button-content">
                                     <p>Check out my process</p>
@@ -263,10 +263,10 @@
                     e.preventDefault(); // Prevent page jump on # link click
 
                     // 1. Extract process details from data attributes
-                    const title = button.dataset.processTitle || "Process Breakdown";
+                    const title = button.dataset.processTitle || "Process";
                     const desc = button.dataset.processDesc || "";
-                    const img1 = button.dataset.img1;
-                    const img2 = button.dataset.img2;
+                    const img1 = button.getAttribute('data-img-1');
+                    const img2 = button.getAttribute('data-img-2');
 
                     // 2. Assemble the scrollable HTML layout for the modal
                     const processModalHtml = `
@@ -275,14 +275,7 @@
                     <p style="margin: 10px 0 20px 0; line-height: 1.6;">${desc}</p>
                     
                     <div class="process-step">
-                        <h3>01. Concept & Sketching</h3>
-                        <p>Initial loose sketches exploring traditional shapes of the guardian lion.</p>
                         ${img1 ? `<img src="${img1}" alt="Sketch Process" class="process-popup-img">` : ''}
-                    </div>
-
-                    <div class="process-step">
-                        <h3>02. Vector Refinement & Details</h3>
-                        <p>Translating traditional motifs into scalable digital assets.</p>
                         ${img2 ? `<img src="${img2}" alt="Vector Process" class="process-popup-img">` : ''}
                     </div>
                 </div>
