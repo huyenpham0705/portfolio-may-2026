@@ -1254,6 +1254,14 @@ h4 {
     padding-bottom: 0;
 }
 
+.process-section .final-results+.final-results {
+    margin-top: 48px;
+}
+
+.process-section>.final-results:last-of-type {
+    margin-bottom: 72px;
+}
+
 .briefing h2,
 .final-results h2 {
     padding-bottom: 5%;
@@ -1565,7 +1573,7 @@ h4 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10%;
+    gap: 15%;
 }
 
 .myroots-1,
@@ -1597,6 +1605,11 @@ h4 {
     .main-img {
         width: 100%;
         max-width: 100%;
+    }
+
+    .main-visual {
+        gap: 32px;
+        align-items: flex-start;
     }
 }
 
