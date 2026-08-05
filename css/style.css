@@ -1612,23 +1612,20 @@ h4 {
 
 /* Style for images inside the scrollable modal */
 .lightbox-content .process-popup-img {
-    flex: 0 0 clamp(220px, 28vw, 300px);
-    width: clamp(220px, 28vw, 300px);
-    max-width: clamp(220px, 28vw, 300px);
+    flex: 1 1 0;
+    width: 100%;
+    max-width: none;
     height: auto;
     border-radius: 8px;
-    margin: 0 auto;
+    margin: 0;
     object-fit: contain;
-    align-self: flex-start;
 }
 
 /* Optional wrapper styling for process steps */
 .lightbox-content .process-step {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 16px 24px;
-    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
     align-items: center;
     margin-bottom: 25px;
     border-bottom: 1px solid #eee;
@@ -1637,13 +1634,23 @@ h4 {
 }
 
 .lightbox-content .process-step h3 {
-    flex: 1 1 100%;
     margin: 0;
 }
 
 .lightbox-content .process-step p {
-    flex: 1 1 0;
     margin: 0;
+}
+
+.lightbox-content .process-step-images {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    width: 100%;
+}
+
+.lightbox-content .process-step-images .process-popup-img {
+    min-width: 0;
+    width: 100%;
 }
 
 .lightbox-panel,
@@ -1664,13 +1671,20 @@ h4 {
 
 @media (max-width: 767px) {
     .lightbox-content .process-step {
+        align-items: stretch;
+    }
+
+    .lightbox-content .process-step-images {
         flex-direction: column;
     }
 
     .lightbox-content .process-step p,
     .lightbox-content .process-popup-img {
-        flex-basis: auto;
         max-width: 100%;
+        width: 100%;
+    }
+
+    .lightbox-content .process-step-images .process-popup-img {
         width: 100%;
     }
 }
