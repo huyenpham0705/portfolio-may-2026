@@ -130,9 +130,9 @@
                         <div class="process-card reveal">
                             <a class="btn final-result-button" href="#" data-process-title="1. Trung Thu - Festival"
                                 data-process-desc="Trung Thu (means Mid autumn) is a festival where we celebrate the full moon - when the moon is the fullest of the year. In this festival, we wear a customs of Lân/Li - a mythical lion and dance under the moonlight. The animal in the design in the Lân."
-                                data-img-1="../../assets/detail/my-roots/1.1-inspiration.png"
-                                data-img-2="../../assets/detail/my-roots/1.2-original.png"
-                                data-img-3="../../assets/detail/my-roots/1.3-final.png">
+                                data-img-a1="../../assets/detail/my-roots/1.1-inspiration.png"
+                                data-img-a2="../../assets/detail/my-roots/1.2-original.png"
+                                data-img-a3="../../assets/detail/my-roots/1.3-final.png">
                                 <div class="final-result-button-content">
                                     <p>Check out my process</p>
                                 </div>
@@ -165,8 +165,8 @@
                                 dynasty in the
                                 12th century — one of
                                 our earliest and most recognizable national designs."
-                                data-img-1="../../assets/detail/my-roots/2.1-sketch.png"
-                                data-img-2="../../assets/detail/my-roots/2.2-explain.png">
+                                data-img-a1="../../assets/detail/my-roots/2.1-sketch.png"
+                                data-img-a2="../../assets/detail/my-roots/2.2-explain.png">
                                 <div class="final-result-button-content">
                                     <p>Check out my process</p>
                                 </div>
@@ -193,9 +193,8 @@
                             <a class="btn final-result-button" href="#" data-process-title="3. Đói Sticker - Street food"
                                 data-process-desc="I began with a quick sketch, then layered in color and brush‑stroke
                                 textures to give the design a richer, more
-                                handcrafted feel." data-img-1="../../assets/detail/my-roots/1.1-inspiration.png"
-                                data-img-2="../../assets/detail/my-roots/1.2-original.png"
-                                data-img-3="../../assets/detail/my-roots/1.3-final.png">
+                                handcrafted feel." data-img-b1="../../assets/detail/my-roots/3.1-showcase.png"
+                                data-img-b2="../../assets/detail/my-roots/3.2-explain.png">
                                 <div class="final-result-button-content">
                                     <p>Check out my process</p>
                                 </div>
@@ -223,9 +222,16 @@
                                 data-process-desc="These are the changes I made. I adjusted many elements, aiming to give
                                 the piece a more modern feel while still
                                 preserving its traditional essence."
-                                data-img-1="../../assets/detail/my-roots/1.1-inspiration.png"
-                                data-img-2="../../assets/detail/my-roots/1.2-original.png"
-                                data-img-3="../../assets/detail/my-roots/1.3-final.png">
+                                data-process-desc2="Final Redesign"
+                                data-process-desc3="Original Design"
+                                data-process-desc4="Full Design"
+                                data-process-desc5="Sketches"
+                                data-process-desc6="Explanation"
+                                data-img-b1="../../assets/detail/my-roots/4.1.png"
+                                data-img-b2="../../assets/detail/my-roots/4.2.png"
+                                data-img-b3="../../assets/detail/my-roots/4.3.png"
+                                data-img-b4="../../assets/detail/my-roots/4.4.png"
+                                data-img-b5="../../assets/detail/my-roots/4.5.png">
                                 <div class="final-result-button-content">
                                     <p>Check out my process</p>
                                 </div>
@@ -284,9 +290,19 @@
                     // 1. Extract process details from data attributes
                     const title = button.dataset.processTitle || "";
                     const desc = button.dataset.processDesc || "";
-                    const img1 = button.getAttribute('data-img-1');
-                    const img2 = button.getAttribute('data-img-2');
-                    const img3 = button.getAttribute('data-img-3');
+                    const desc2 = button.dataset.processDesc2 || "";
+                    const desc3 = button.dataset.processDesc3 || "";
+                    const desc4 = button.dataset.processDesc4 || "";
+                    const desc5 = button.dataset.processDesc5 || "";
+                    const desc6 = button.dataset.processDesc6 || "";
+                    const imga1 = button.getAttribute('data-img-a1');
+                    const imga2 = button.getAttribute('data-img-a2');
+                    const imga3 = button.getAttribute('data-img-a3');
+                    const imgb1 = button.getAttribute('data-img-b1');
+                    const imgb2 = button.getAttribute('data-img-b2');
+                    const imgb3 = button.getAttribute('data-img-b3');
+                    const imgb4 = button.getAttribute('data-img-b4');
+                    const imgb5 = button.getAttribute('data-img-b5');
 
                     // 2. Assemble the scrollable HTML layout for the modal
                     const processModalHtml = `
@@ -295,10 +311,23 @@
                     <p style="max-width: 700px; margin: 10px auto 20px auto; line-height: 1.6;">${desc}</p>
                     
                     <div class="process-step">
-                        <div class="process-step-images">
-                            ${img1 ? `<img src="${img1}" alt="Sketch Process" class="process-popup-img">` : ''}
-                            ${img2 ? `<img src="${img2}" alt="Vector Process" class="process-popup-img">` : ''}
-                            ${img3 ? `<img src="${img3}" alt="Final Process" class="process-popup-img">` : ''}
+                        <div class="process-step-images-a">
+                            ${imga1 ? `<img src="${imga1}" alt="Sketch Process" class="process-popup-img">` : ''}
+                            ${imga2 ? `<img src="${imga2}" alt="Vector Process" class="process-popup-img">` : ''}
+                            ${imga3 ? `<img src="${imga3}" alt="Final Process" class="process-popup-img">` : ''}
+                        </div>
+                        <div class="process-step-images-b">
+                            ${desc2 ? `<p>${desc2}</p>` : ''}
+                            ${imgb1 ? `<img src="${imgb1}" alt="Sketch Process" class="process-popup-img">` : ''}
+                            ${desc3 ? `<p>${desc3}</p>` : ''}
+                            ${imgb2 ? `<img src="${imgb2}" alt="Vector Process" class="process-popup-img">` : ''}
+                            ${desc4 ? `<p>${desc4}</p>` : ''}
+                            ${imgb3 ? `<img src="${imgb3}" alt="Final Process" class="process-popup-img">` : ''}
+                            ${desc5 ? `<p>${desc5}</p>` : ''}
+                            ${imgb4 ? `<img src="${imgb4}" alt="Final Process" class="process-popup-img">` : ''}
+                            ${desc6 ? `<p>${desc6}</p>` : ''}
+                            ${imgb5 ? `<img src="${imgb5}" alt="Final Process" class="process-popup-img">` : ''}
+                            
                         </div>
                     </div>
                 </div>
