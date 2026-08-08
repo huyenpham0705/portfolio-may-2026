@@ -1433,8 +1433,21 @@ h4 {
     padding-top: 60px;
 }
 
+.journey-timeline-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.journey-timeline{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .journey-timeline-year {
     display: inline-block;
+    width: fit-content;
     padding: 5px 10px;
     border: 1px solid var(--text);
     border-radius: 30px;
@@ -1479,6 +1492,13 @@ h4 {
     .desktop-only {
         display: block;
     }
+}
+
+.story-section{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
 }
 
 .story-section h3 {
