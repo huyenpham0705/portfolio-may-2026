@@ -1427,10 +1427,18 @@ h4 {
 /* --- ABOUT PAGE SPECIFIC OVERRIDES --- */
 .about-grid {
     display: grid;
-    grid-template-columns: 0.7fr 1.5fr;
+    grid-template-columns: 1.5fr 0.7fr;
     gap: 80px;
     align-items: start;
     padding-top: 60px;
+}
+
+.journey-timeline-year {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid var(--text);
+    border-radius: 30px;
+
 }
 
 .about-image img {
