@@ -253,75 +253,6 @@ h4 {
     }
 }
 
-/* --- ABOUT ME IMAGE 3D FX --- */
-.about-teaser {
-    perspective: 1200px;
-    /* Establish 3D space for the section */
-}
-
-.about-me-img-container {
-    position: relative;
-    width: 30%;
-    /* Replicates your original desktop width */
-    transform-style: preserve-3d;
-    transition: transform 0.1s ease-out;
-    will-change: transform;
-    cursor: pointer;
-}
-
-/* Base styles for the image itself */
-.about-me-img {
-    display: block;
-    /* Ensure no gaps */
-    width: 100% !important;
-    /* Forces image to fill the 30% container */
-    height: auto;
-    border-radius: 30px;
-    /* Replicates your original curve radius */
-    filter: grayscale(20%);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-/* Glass Sheen Reflection Overlay */
-.about-me-img-container::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    /* Dynamic inherit based on screen size */
-
-    /* Dynamic radial gradient light sheen. Coordinates set via JS */
-    background: radial-gradient(circle 100px at var(--sheen-x, 50%) var(--sheen-y, 50%), rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
-    mix-blend-mode: overlay;
-    pointer-events: none;
-    /* Allows cursor tracking through to the image */
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-/* Hover States */
-.about-me-img-container:hover .about-me-img {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.about-me-img-container:hover::after {
-    opacity: 1;
-}
-
-/* Mobile adjustments to handle stack layout */
-@media (max-width: 768px) {
-    .about-me-img-container {
-        width: 100%;
-        /* Replicates your original mobile stack behavior */
-        perspective: none;
-    }
-
-    /* Replicates your mobile borderRadius change */
-    .about-me-img {
-        border-radius: 300px;
-    }
-}
 
 /* --- STICKY NAVBAR & PROGRESS TRACKER --- */
 .navbar {
@@ -735,23 +666,88 @@ h4 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 40px;
-    justify-content: space-between;
+    gap: 10%;
+    justify-content: center;
     padding: 40px 10%;
+    height: auto;
 }
 
-.about-teaser.reveal .container {
-    width: 60%;
+.experience-stack ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
+
+/* Add vertical spacing to each list item */
+.experience-stack li {
+    padding: 12px 0;
+}
+
+/* Add a line under every item except the last one */
+.experience-stack li:not(:last-child) {
+    border-bottom: 1px solid #e0e0e0; /* Change color & thickness as needed */
+}
+
+.journey-year{
+    font-weight: 600;
+}
+
+@media (min-width: 769px) {
+    .about-teaser.reveal .container {
+        width: auto;
+        margin: 0;
+    }
+
+    .about-teaser.reveal .container1 {
+        flex: 1.1;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .about-teaser.reveal .container2 {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        flex: 0.9;
+    }
+
+    .experience-stack,
+    .software-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    
+
+    .about-teaser.reveal .container2 .btn.about{
+        margin-top: 0;
+    }
+}
+
+/* .about-teaser.reveal .container {
+    width: 60%;
+} */
 
 @media (max-width: 768px) {
     .about-teaser.reveal {
         flex-direction: column;
         padding: 20px 5%;
+        gap: 0%;
+        height: auto;
     }
 
     .about-teaser.reveal .container {
         width: 100%;
+    }
+
+    .about-teaser.reveal .container1 {
+        padding-bottom: 0;
+    }
+
+    .about-teaser.reveal .container2 {
+        padding-top: 0;
     }
 }
 
@@ -778,7 +774,7 @@ h4 {
     text-decoration: none;
     color: var(--text);
     border-radius: clamp(12px, 3vw, 30px);
-    font-size: clamp(0.85rem, 1.6vw, 1rem);
+    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
     white-space: nowrap;
 }
 
@@ -911,6 +907,7 @@ h4 {
 /* --- BUTTON LAYOUT ELEMENTS --- */
 .btn {
     display: inline-block;
+    width: fit-content;
     padding: 12px 30px;
     border: 1px solid var(--text);
     text-decoration: none;
@@ -1439,7 +1436,7 @@ h4 {
     gap: 20px;
 }
 
-.journey-timeline{
+.journey-timeline {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -1494,7 +1491,7 @@ h4 {
     }
 }
 
-.story-section{
+.story-section {
     display: flex;
     flex-direction: column;
     gap: 20px;
