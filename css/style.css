@@ -80,13 +80,22 @@ h4 {
 }
 
 .hero-title {
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
+@media (min-width: 425px) {
+    .hero-title {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
 
 .title-mobile {
     display: block;
@@ -105,6 +114,14 @@ h4 {
         display: none;
     }
 
+    .hero-title {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
     .title-desktop {
         display: block;
         width: 80%;
@@ -117,6 +134,16 @@ h4 {
 
     h4 {
         font-size: 25px;
+    }
+}
+
+@media (min-width: 425px) {
+    .hero-title {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 }
 
@@ -254,7 +281,41 @@ h4 {
 }
 
 
+
+
 /* --- STICKY NAVBAR & PROGRESS TRACKER --- */
+
+/* Navbar adjustments to distribute items */
+nav.navbar.home {
+    display: flex;
+    justify-content: flex-end;
+    /* Pushes button to left, menu to right */
+    align-items: center;
+    /* Centers them vertically */
+}
+
+nav.navbar {
+    display: flex;
+    justify-content: space-between;
+    /* Pushes button to left, menu to right */
+    align-items: center;
+    /* Centers them vertically */
+}
+
+/* Back button adjustments to integrate into the flow */
+a.btn.back-to-projects {
+    position: static;
+    /* Removes the fixed positioning */
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    top: auto;
+    /* Resets previous fixed offsets */
+    left: auto;
+
+}
+
+
 .navbar {
     position: fixed;
     top: 0;
@@ -632,11 +693,11 @@ h4 {
     }
 
     .hero-content {
-        align-items: flex-start;
+        /* align-items: flex-start; */
         flex: 1.2;
     }
 
-    .hero-image {
+    /*  .hero-image {
         flex: 0.8;
         max-width: 500px;
         display: flex;
@@ -646,7 +707,7 @@ h4 {
     .hero-image img {
         width: 90%;
         border-radius: 500px;
-    }
+    } */
 
     .check-prjs {
         flex-direction: row;
@@ -685,10 +746,11 @@ h4 {
 
 /* Add a line under every item except the last one */
 .experience-stack li:not(:last-child) {
-    border-bottom: 1px solid #e0e0e0; /* Change color & thickness as needed */
+    border-bottom: 1px solid #e0e0e0;
+    /* Change color & thickness as needed */
 }
 
-.journey-year{
+.journey-year {
     font-weight: 600;
 }
 
@@ -719,9 +781,9 @@ h4 {
         gap: 12px;
     }
 
-    
 
-    .about-teaser.reveal .container2 .btn.about{
+
+    .about-teaser.reveal .container2 .btn.about {
         margin-top: 0;
     }
 }
@@ -748,6 +810,10 @@ h4 {
 
     .about-teaser.reveal .container2 {
         padding-top: 0;
+    }
+
+    .software-stack {
+        padding-bottom: 20px;
     }
 }
 
@@ -1111,7 +1177,10 @@ h4 {
     left: 5%;
     z-index: 1001;
     margin: 0;
-    background: var(--bg);
+    background: rgba(250, 250, 250, 0.7);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+    
 }
 
 .back {
@@ -1298,6 +1367,10 @@ h4 {
     gap: 12px;
 }
 
+.hero-meta-catedes {
+    text-align: center;
+}
+
 @media (min-width: 768px) {
     .image-container-socialmedia {
         display: grid;
@@ -1305,6 +1378,10 @@ h4 {
         gap: 12px;
         margin-top: 12px;
         width: 100%;
+    }
+
+    .hero-meta-catedes {
+        text-align: left;
     }
 }
 
@@ -1374,6 +1451,7 @@ h4 {
     .hero-meta-detail {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         gap: 20px;
     }
 
