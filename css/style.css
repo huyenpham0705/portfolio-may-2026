@@ -1231,6 +1231,10 @@ a.btn.back-to-projects {
     height: 90vh;
 }
 
+.hero-meta h1 {
+    text-align: center;
+}
+
 @media (min-width: 375px) {
     .project-hero {
         grid-template-rows: 50vh 40vh;
