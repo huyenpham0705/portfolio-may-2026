@@ -1221,6 +1221,11 @@ a.btn.back-to-projects {
     gap: 12px;
 }
 
+.process-grid .process-card .main-text {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
 .project-hero {
     display: grid;
     grid-template-rows: 50vh 40vh;
@@ -1715,6 +1720,8 @@ h4 {
 .myroots-4 {
     flex-direction: column;
 }
+
+
 
 @media (min-width: 767px) {
 
