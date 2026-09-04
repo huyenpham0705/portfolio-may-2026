@@ -242,10 +242,12 @@ const previewImg = document.getElementById('preview-img');
 if (preview && previewImg) {
     items.forEach(item => {
         // 1. When mouse enters a row
-        item.addEventListener('mouseenter', () => {
+        item.addEventListener('mouseenter', (e) => {
             const imageSrc = item.getAttribute('data-image');
             if (imageSrc) {
                 previewImg.src = imageSrc;
+                preview.style.top = `${e.clientY}px`;
+                preview.style.left = `${e.clientX}px`;
                 preview.classList.add('visible');
             }
         });
