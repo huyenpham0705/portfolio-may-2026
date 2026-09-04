@@ -290,72 +290,10 @@
                     </div>
                 </a>
             </div>
-            <p class="footer-copy">&copy; 2026 Huyen Pham. All rights reserved.</p>
+            <p class="footer-copy">2026 Huyen Pham</p>
         </div>
     </footer>
     <script src="../../js/script.js"></script>
-    <!-- <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const processButtons = document.querySelectorAll(".final-result-button");
-
-            processButtons.forEach(button => {
-                button.addEventListener("click", (e) => {
-                    e.preventDefault(); // Prevent page jump on # link click
-
-                    // 1. Extract process details from data attributes
-                    const title = button.dataset.processTitle || "";
-                    const desc = button.dataset.processDesc || "";
-                    const desc2 = button.dataset.processDesc2 || "";
-                    const desc3 = button.dataset.processDesc3 || "";
-                    const desc4 = button.dataset.processDesc4 || "";
-                    const desc5 = button.dataset.processDesc5 || "";
-                    const desc6 = button.dataset.processDesc6 || "";
-                    const imga1 = button.getAttribute('data-img-a1');
-                    const imga2 = button.getAttribute('data-img-a2');
-                    const imga3 = button.getAttribute('data-img-a3');
-                    const imgb1 = button.getAttribute('data-img-b1');
-                    const imgb2 = button.getAttribute('data-img-b2');
-                    const imgb3 = button.getAttribute('data-img-b3');
-                    const imgb4 = button.getAttribute('data-img-b4');
-                    const imgb5 = button.getAttribute('data-img-b5');
-
-                    // 2. Assemble the scrollable HTML layout for the modal
-                    const processModalHtml = `
-                <div class="process-modal-body" style="display: flex; flex-direction: column; align-items: center; gap: 32px;">
-                    <h2>${title}</h2>
-                    <p style="max-width: 700px; margin: 10px auto 20px auto; line-height: 1.6;">${desc}</p>
-                    
-                    <div class="process-step">
-                        <div class="process-step-images-a">
-                            ${imga1 ? `<img src="${imga1}" alt="Sketch Process" class="process-popup-img">` : ''}
-                            ${imga2 ? `<img src="${imga2}" alt="Vector Process" class="process-popup-img">` : ''}
-                            ${imga3 ? `<img src="${imga3}" alt="Final Process" class="process-popup-img">` : ''}
-                        </div>
-                        <div class="process-step-images-b">
-                            ${desc2 ? `<p>${desc2}</p>` : ''}
-                            ${imgb1 ? `<img src="${imgb1}" alt="Sketch Process" class="process-popup-img">` : ''}
-                            ${desc3 ? `<p>${desc3}</p>` : ''}
-                            ${imgb2 ? `<img src="${imgb2}" alt="Vector Process" class="process-popup-img">` : ''}
-                            ${desc4 ? `<p>${desc4}</p>` : ''}
-                            ${imgb3 ? `<img src="${imgb3}" alt="Final Process" class="process-popup-img">` : ''}
-                            ${desc5 ? `<p>${desc5}</p>` : ''}
-                            ${imgb4 ? `<img src="${imgb4}" alt="Final Process" class="process-popup-img">` : ''}
-                            ${desc6 ? `<p>${desc6}</p>` : ''}
-                            ${imgb5 ? `<img src="${imgb5}" alt="Final Process" class="process-popup-img">` : ''}
-                            
-                        </div>
-                    </div>
-                </div>
-            `;
-
-                    // 3. Open the lightbox with the built content
-                    if (typeof openLightbox === "function") {
-                        openLightbox(processModalHtml);
-                    }
-                });
-            });
-        });
-    </script> -->
 </body>
 
 </html>
