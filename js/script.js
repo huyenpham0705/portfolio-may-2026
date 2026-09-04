@@ -190,26 +190,47 @@ document.querySelectorAll('.reveal').forEach(el => {
 const projectCards = document.querySelectorAll('.project-card');
 
 projectCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        if (window.innerWidth <= 768) return; // Disable mathematical transforms on mobile
+    let cardRect;
+    let pointerX = 0;
+    let pointerY = 0;
+    let frameId = null;
 
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left; // Mouse position inside card element frame
-        const y = e.clientY - rect.top;
+    const updateTilt = () => {
+        frameId = null;
 
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
+        if (!cardRect) return;
 
-        // Map mouse vector path coordinates into tilt parameters (-8deg to 8deg max range)
+        const x = pointerX - cardRect.left;
+        const y = pointerY - cardRect.top;
+        const centerX = cardRect.width / 2;
+        const centerY = cardRect.height / 2;
+
         const tiltX = ((centerY - y) / centerY) * 8;
         const tiltY = ((x - centerX) / centerX) * 8;
 
         card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+    };
+
+    card.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 768) return; // Disable mathematical transforms on mobile
+
+        pointerX = e.clientX;
+        pointerY = e.clientY;
+        if (!frameId) frameId = requestAnimationFrame(updateTilt);
     });
 
     // Smooth deceleration back to straight layout matrix on boundary leave
     card.addEventListener('mouseleave', () => {
+        cardRect = null;
+        if (frameId) cancelAnimationFrame(frameId);
+        frameId = null;
         card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+
+    card.addEventListener('mouseenter', (e) => {
+        cardRect = card.getBoundingClientRect();
+        pointerX = e.clientX;
+        pointerY = e.clientY;
     });
 });
 
