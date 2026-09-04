@@ -778,7 +778,7 @@ a.btn.back-to-projects {
     .software-stack {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 7px;
     }
 
 
@@ -836,7 +836,7 @@ a.btn.back-to-projects {
     align-items: center;
     gap: 8px;
     padding: clamp(6px, 1.6vw, 10px) clamp(10px, 4.5vw, 30px);
-    border: 1px solid var(--text);
+    border: 1px solid #c8c6c6;
     text-decoration: none;
     color: var(--text);
     border-radius: clamp(12px, 3vw, 30px);
@@ -856,7 +856,7 @@ a.btn.back-to-projects {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 18px;
+    gap: 7px;
     flex-wrap: wrap;
     margin-top: 12px;
 }
@@ -1336,7 +1336,7 @@ a.btn.back-to-projects {
     gap: 10px;
     padding: 10px 20px;
     width: fit-content;
-    border: 1px solid var(--text);
+    border: 1px solid #c8c6c6;
     border-radius: 30px;
 }
 
@@ -1563,7 +1563,7 @@ h4 {
     display: inline-block;
     width: fit-content;
     padding: 5px 10px;
-    border: 1px solid var(--text);
+    border: 1px solid #c8c6c6;
     border-radius: 30px;
 
 }
@@ -1635,6 +1635,10 @@ h4 {
 .skill-item p {
     font-size: 0.9rem;
     color: #555;
+}
+
+.final-result-button-content p {
+    color: inherit;
 }
 
 .cta-box {
