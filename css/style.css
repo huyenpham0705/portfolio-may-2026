@@ -20,8 +20,9 @@ body {
 
 .huyenpham-aboutme {
     font-weight: 550;
+    font-style: italic;
     text-decoration-line: underline;
-    text-decoration-color: var(--accent);
+    text-decoration-color: #dad4f2;
     text-decoration-thickness: 2px;
     text-decoration-style: solid;
     text-underline-offset: 7px;
@@ -81,26 +82,17 @@ h4 {
 
 .hero-title {
     width: 90%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-@media (min-width: 425px) {
-    .hero-title {
-        width: 70%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .title-mobile {
     display: block;
-    width: 80%;
-    height: 70%;
+    width: 100%;
+    height: auto;
 }
 
 .title-desktop {
@@ -118,13 +110,16 @@ h4 {
         width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-start;
+        justify-content: flex-start;
     }
 
     .title-desktop {
         display: block;
-        width: 80%;
+        width: 100%;
+        height: auto;
+        margin-left: -15px;
+        /* margin-bottom: -20px; */
     }
 
     h3 {
@@ -142,7 +137,7 @@ h4 {
         width: 70%;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
     }
 }
@@ -495,26 +490,26 @@ a.btn.back-to-projects {
 .hero-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:flex-start;
     justify-content: center;
-    width: 100%;
+    width: 80%;
     height: 100%;
     gap: 30px;
 }
 
 .hero-introduction {
-    text-align: center;
-    align-self: center;
-    width: 50%;
+    /* text-align: center; */
+    /* align-self: center; */
+    width: 80%;
 }
 
 @media (max-width: 768px) {
     .hero-content {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
-        width: 100%;
+        width: 80%;
         height: 100%;
         gap: 15px;
     }
@@ -527,8 +522,8 @@ a.btn.back-to-projects {
 .check-prjs {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     gap: 10px;
     width: 100%;
     max-width: 400px;
@@ -553,7 +548,6 @@ a.btn.back-to-projects {
     gap: 10px;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
-    font-weight: 600;
     pointer-events: none;
     /* Prevents visual jitter during cursor pull */
 }
@@ -827,7 +821,6 @@ a.btn.back-to-projects {
 
 .intro-text {
     padding-top: 2%;
-    padding-bottom: 2%;
 
 }
 
