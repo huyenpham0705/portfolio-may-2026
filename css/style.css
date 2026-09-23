@@ -667,11 +667,6 @@ a.btn.back-to-projects {
     display: none;
 }
 
-.my-face{
-    width: 100%;
-    border-radius: 10px;
-}
-
 @media (min-width: 680px) {
     .check-prjs {
         flex-direction: row;
