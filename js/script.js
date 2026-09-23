@@ -454,15 +454,23 @@ document.addEventListener("DOMContentLoaded", () => {
         { r: 218, g: 156, b: 106, maxAlpha: 0.92, radius: 260 },  // #da9c6a
     ];
 
+    const randomDesktopX = () => {
+        if (window.innerWidth >= 768) {
+            return width / 2 + Math.random() * (width / 2);
+        }
+
+        return Math.random() * width;
+    };
+
     // Initialize individual circle attributes (positions, individual drifting paths, opacity phases)
     const circles = blobConfigs.map((config) => {
         return {
             ...config,
             // Scattered start layout across the viewport area
-            x: Math.random() * width / 2,
+            x: randomDesktopX(),
             y: Math.random() * height / 2,
             // Small target offsets for the continuous slow drift movement
-            targetX: Math.random() * width,
+            targetX: randomDesktopX(),
             targetY: Math.random() * height,
             // Phase parameter tracking for the opacity pulsing loop
             alphaPhase: Math.random() * Math.PI * 2,
@@ -495,7 +503,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Pick a brand new coordinate position cluster if a blob approaches its destination target boundaries
             if (Math.abs(circle.targetX - circle.x) < 10 && Math.abs(circle.targetY - circle.y) < 10) {
-                circle.targetX = Math.random() * width;
+                circle.targetX = randomDesktopX();
                 circle.targetY = Math.random() * height;
             }
 

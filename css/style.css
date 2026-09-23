@@ -119,7 +119,7 @@ h4 {
         width: 100%;
         height: auto;
         margin-left: -15px;
-        margin-bottom: -20px; 
+        margin-bottom: -20px;
     }
 
     h3 {
@@ -490,7 +490,7 @@ a.btn.back-to-projects {
 .hero-content {
     display: flex;
     flex-direction: column;
-    align-items:flex-start;
+    align-items: flex-start;
     justify-content: center;
     width: 80%;
     height: 100%;
@@ -667,6 +667,11 @@ a.btn.back-to-projects {
     display: none;
 }
 
+.my-face{
+    width: 100%;
+    border-radius: 10px;
+}
+
 @media (min-width: 680px) {
     .check-prjs {
         flex-direction: row;
@@ -706,6 +711,13 @@ a.btn.back-to-projects {
     .check-prjs {
         flex-direction: row;
         max-width: none;
+        align-self: flex-end;
+        justify-content: flex-end;
+    }
+
+    .hero-introduction.right {
+        align-self: flex-start;
+        width: 60%;
     }
 
     .about-me-img {
@@ -880,7 +892,7 @@ a.btn.back-to-projects {
     }
 }
 
-.section-intro{
+.section-intro {
     margin-top: 20px;
 }
 
