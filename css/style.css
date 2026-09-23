@@ -21,6 +21,7 @@ body {
 .huyenpham-aboutme {
     font-weight: 550;
     font-style: italic;
+    cursor: pointer;
     text-decoration-line: underline;
     text-decoration-color: #dad4f2;
     text-decoration-thickness: 2px;
@@ -1098,6 +1099,14 @@ a.btn.back-to-projects {
 .hover-preview.visible {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
+}
+
+.hover-preview.face-preview {
+    transform: translate(-75%, -50%) scale(0.8);
+}
+
+.hover-preview.face-preview.visible {
+    transform: translate(-75%, -50%) scale(1);
 }
 
 /* --- ASYNCHRONOUS ENGINE REVEAL EFFECTS --- */

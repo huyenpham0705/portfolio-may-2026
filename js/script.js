@@ -256,7 +256,7 @@ magneticButtons.forEach(btn => {
 });
 
 // Hover preview for published items
-const items = document.querySelectorAll('.published-item');
+const items = document.querySelectorAll('.published-item, .huyenpham-aboutme');
 const preview = document.getElementById('hover-preview');
 const previewImg = document.getElementById('preview-img');
 
@@ -269,6 +269,7 @@ if (preview && previewImg) {
                 previewImg.src = imageSrc;
                 preview.style.top = `${e.clientY}px`;
                 preview.style.left = `${e.clientX}px`;
+                preview.classList.toggle('face-preview', item.classList.contains('huyenpham-aboutme'));
                 preview.classList.add('visible');
             }
         });
@@ -286,6 +287,7 @@ if (preview && previewImg) {
         // 3. When mouse leaves a row
         item.addEventListener('mouseleave', () => {
             preview.classList.remove('visible');
+            preview.classList.remove('face-preview');
         });
     });
 }
